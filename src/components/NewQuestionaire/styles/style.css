@@ -1,0 +1,29 @@
+.newQuestionaire__container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 150px;
+}
+.newQuestionaire__container h1 {
+  text-align: center;
+}
+.newQuestionaire__container .MuiFormControl-root {
+  max-width: 40vw;
+}
+.newQuestionaire__container .MuiTextField-root {
+  min-width: 40vw;
+}
+.newQuestionaire__container .MuiButton-root {
+  background: #2c3e50;
+  color: #fff;
+  width: 40vw;
+  padding: 10px;
+}
+.newQuestionaire__container .MuiButton-root:hover {
+  background: #2c3e50;
+}
+.newQuestionaire__container .MuiButton-root.submitBtn {
+  background: #27ae60;
+}/*# sourceMappingURL=style.css.map */

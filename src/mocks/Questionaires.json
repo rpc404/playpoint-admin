@@ -1,0 +1,89 @@
+[
+    {
+        "marketplaceSlug": "worldcup-2022",
+        "fixtureId": "32859325565",
+        "poolType": "duo",
+        "questionType": 4,
+        "bidPrice": 5,
+        "questions": [
+            "What will be the exact score?",
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "champions-league",
+        "fixtureId": "328659325565",
+        "poolType": "trio",
+        "questionType": 3,
+        "bidPrice": 10,
+        "questions": [
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "premier-league-2022",
+        "fixtureId": "32859325565",
+        "poolType": "duo",
+        "questionType": 4,
+        "bidPrice": 15,
+        "questions": [
+            "What will be the exact score?",
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "european-league",
+        "fixtureId": "328659325565",
+        "poolType": "nonet",
+        "questionType": 3,
+        "bidPrice": 20,
+        "questions": [
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "uefa-nations-league-2022",
+        "fixtureId": "328659325565",
+        "poolType": "trio",
+        "questionType": 3,
+        "bidPrice": 10,
+        "questions": [
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "premier-league-2022",
+        "fixtureId": "32859325565",
+        "poolType": "unlimited",
+        "questionType": 4,
+        "bidPrice": 5,
+        "questions": [
+            "What will be the exact score?",
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    },
+    {
+        "marketplaceSlug": "saff-championship-2022",
+        "fixtureId": "328659325565",
+        "poolType": "nonet",
+        "questionType": 3,
+        "bidPrice": 10,
+        "questions": [
+            "How many offsides for brazil & qatar in total?",
+            "Will Neymar fall more than 10 times?",
+            "Who'll be the highest scorer?"
+        ]
+    }
+]

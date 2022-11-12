@@ -1,0 +1,25 @@
+.newresult__container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+
+    .MuiTextField-root{
+        width: 40vw;
+    }
+    .MuiButton-root {
+        background: #2c3e50;
+        color: #fff;
+        width: 40vw;
+        padding: 10px;
+        
+        &:hover{
+          background: #2c3e50;
+        }
+    
+        &.submitBtn {
+          background: #27ae60;
+        }
+      }
+}

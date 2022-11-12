@@ -1,0 +1,112 @@
+.fixture__container {
+  padding-bottom: 130px;
+}
+.fixture__container .title {
+  text-align: center;
+  margin-top: 20px;
+}
+.fixture__container .search__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.6666666667);
+  width: 30vw;
+  padding: 5px 15px;
+}
+.fixture__container .search__container:focus-within {
+  border-color: #3498db;
+}
+.fixture__container .search__container input {
+  border: none;
+  flex: 1;
+  font-size: 17px;
+  padding: 8px;
+}
+.fixture__container .search__container input:focus {
+  outline: none;
+}
+.fixture__container .fixture__items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding: 0 5vw;
+  gap: 3vw;
+}
+.fixture__container .fixture__items .fixture__item {
+  max-width: 28vw;
+  cursor: pointer;
+  min-width: 28vw;
+  flex-direction: column;
+  box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  align-items: flex-start;
+  transition: 0.3s all ease-in-out;
+  color: #5a5a5a;
+}
+.fixture__container .fixture__items .fixture__item:hover {
+  box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.0901960784);
+  -webkit-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
+  -moz-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
+  transform: scale(1.05);
+}
+.fixture__container .fixture__items .fixture__item.newFixture {
+  align-items: center;
+}
+.fixture__container .fixture__items .fixture__item.newFixture i {
+  font-size: 22px;
+}
+.fixture__container .fixture__items .fixture__item .gameDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+.fixture__container .fixture__items .fixture__item .gameDetails span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.fixture__container .fixture__items .fixture__item .gameDetails span img {
+  width: 50px;
+}
+.fixture__container .fixture__items .fixture__item .summary {
+  margin: 5px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.fixture__container .fixture__items .fixture__item .title {
+  display: flex;
+  align-items: center;
+}
+.fixture__container .fixture__items .fixture__item .title b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.fixture__container .fixture__items .fixture__item .actions {
+  padding: 0 10px;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.0666666667);
+  padding-top: 5px;
+  margin-top: 5px;
+}
+.fixture__container .fixture__items .fixture__item .actions .MuiButton-root {
+  padding: 0;
+  min-width: 0;
+  gap: 5px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.fixture__container .fixture__items .fixture__item .actions .MuiButton-root.editBtn {
+  color: #0984e3;
+}
+.fixture__container .fixture__items .fixture__item .actions .MuiButton-root.deleteBtn {
+  color: #ff7675;
+}/*# sourceMappingURL=style.css.map */

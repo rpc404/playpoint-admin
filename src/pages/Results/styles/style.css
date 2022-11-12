@@ -1,0 +1,91 @@
+.result__container {
+  padding-bottom: 150px;
+}
+.result__container .title {
+  text-align: center;
+  margin-top: 20px;
+}
+.result__container .search__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.6666666667);
+  width: 30vw;
+  padding: 5px 15px;
+}
+.result__container .search__container:focus-within {
+  border-color: #3498db;
+}
+.result__container .search__container input {
+  border: none;
+  flex: 1;
+  font-size: 17px;
+  padding: 8px;
+}
+.result__container .search__container input:focus {
+  outline: none;
+}
+.result__container .result__items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding: 0 5vw;
+  gap: 3vw;
+}
+.result__container .result__items .result__item {
+  max-width: 20vw;
+  cursor: pointer;
+  min-width: 20vw;
+  flex-direction: column;
+  box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  align-items: flex-start;
+  transition: 0.3s all ease-in-out;
+  color: #5a5a5a;
+}
+.result__container .result__items .result__item:hover {
+  box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.0901960784);
+  -webkit-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
+  -moz-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
+  transform: scale(1.05);
+}
+.result__container .result__items .result__item p {
+  color: #8d8d8d;
+}
+.result__container .result__items .result__item p b {
+  color: #585858;
+}
+.result__container .result__items .result__item.newResult {
+  align-items: center;
+}
+.result__container .result__items .result__item.newResult i {
+  font-size: 22px;
+}
+.result__container .result__items .result__item ul {
+  font-size: 14px;
+  margin: 12px 0;
+  font-weight: 500;
+  margin-left: 18px;
+}
+.result__container .result__items .result__item .actions {
+  padding: 0 10px;
+  gap: 10px;
+  display: flex;
+}
+.result__container .result__items .result__item .actions .MuiButton-root {
+  padding: 0;
+  min-width: 0;
+  gap: 5px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.result__container .result__items .result__item .actions .MuiButton-root.editBtn {
+  color: #0984e3;
+}
+.result__container .result__items .result__item .actions .MuiButton-root.deleteBtn {
+  color: #ff7675;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,60 @@
+.newFixture__container {
+  margin-top: 30px;
+}
+.newFixture__container .header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.newFixture__container .newMarketplaceForm__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.newFixture__container .newMarketplaceForm__container .fixtureFormat,
+.newFixture__container .newMarketplaceForm__container .imageInputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.newFixture__container .newMarketplaceForm__container .fixtureFormat img,
+.newFixture__container .newMarketplaceForm__container .imageInputs img {
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.newFixture__container .newMarketplaceForm__container .fixtureFormat p,
+.newFixture__container .newMarketplaceForm__container .imageInputs p {
+  font-size: 20px;
+  font-weight: 500;
+}
+.newFixture__container .newMarketplaceForm__container .fixtureFormat .MuiTextField-root,
+.newFixture__container .newMarketplaceForm__container .imageInputs .MuiTextField-root {
+  min-width: 14vw;
+}
+.newFixture__container .newMarketplaceForm__container .MuiFormControl-root {
+  min-width: 30vw;
+}
+.newFixture__container .gameInfos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.newFixture__container .gameInfos .MuiTextField-root {
+  max-width: 9.5vw;
+  min-width: 9.5vw;
+}
+.newFixture__container .MuiButton-root {
+  background: #2c3e50;
+  color: #fff;
+  width: 40vw;
+  padding: 10px;
+}
+.newFixture__container .MuiButton-root:hover {
+  background: #2c3e50;
+}
+.newFixture__container .MuiButton-root.submitBtn {
+  background: #27ae60;
+}/*# sourceMappingURL=style.css.map */
