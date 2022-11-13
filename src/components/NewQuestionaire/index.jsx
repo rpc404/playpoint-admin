@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { toast } from "react-toastify";
 import { newQuestionaire } from "../../api/Questionaire";
+import { useLocation } from "react-router-dom";
 import "./styles/style.css";
 
 export default function NewQuestionaire() {
@@ -19,6 +20,7 @@ export default function NewQuestionaire() {
     poolType: "duo",
     questionaires: ["", "", ""],
   });
+  const params =  useLocation();
 
   const [questionOne, setQuestionOne] = React.useState("");
   const [questionTwo, setQuestionTwo] = React.useState("");
@@ -62,11 +64,11 @@ export default function NewQuestionaire() {
     setLoading(true);
     e.preventDefault();
 
-    const { fixtureId, bidPrice, questionType, poolType, questions } = formData;
+    const { bidPrice, questionType, poolType } = formData;
 
     if (questionType === 3) {
       const data = {
-        fixtureId: "124",
+        fixtureId: params?.state?.fixtureId,
         bidPrice,
         questionType,
         poolType,
@@ -76,7 +78,7 @@ export default function NewQuestionaire() {
       await newQuestionaire(data)
     } else {
       const data = {
-        fixtureId: "124",
+        fixtureId: params?.state?.fixtureId,
         bidPrice,
         questionType,
         poolType,

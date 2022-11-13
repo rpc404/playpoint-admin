@@ -67,7 +67,7 @@ export default function Questionaires() {
                 <div className="questionaire__item" key={index}>
                   <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" loading="lazy"/>
                   <div className="marketplaceSlug">
-                    <b>Marketplace</b>: {data?.item?.marketplaceSlug}
+                    {/* <b>Marketplace</b>: {data?.item?.marketplaceSlug} */}
                   </div>
                   <div className="fixture">
                     <b>Fixture</b>: {data?.item?.fixtureId}
@@ -84,7 +84,11 @@ export default function Questionaires() {
                     </Button>
                     <Button
                       className="resultBtn"
-                      onClick={() => navigate("/results/new")}
+                      onClick={() => navigate("/results/new", {
+                        state: {
+                          questionaireId: data?.item?._id
+                        }
+                      })}
                     >
                       <i className="ri-gamepad-line"></i> Set Result
                     </Button>
@@ -101,7 +105,7 @@ export default function Questionaires() {
                   <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" loading="lazy"/>
 
                   <div className="marketplaceSlug">
-                    <b>Marketplace</b>: {data.marketplaceSlug}
+                    {/* <b>Marketplace</b>: {data.marketplaceSlug} */}
                   </div>
                   <div className="fixture">
                     <b>Fixture</b>: {data.fixtureId}
@@ -118,7 +122,11 @@ export default function Questionaires() {
                     </Button>
                     <Button
                       className="resultBtn"
-                      onClick={() => navigate("/results/new")}
+                      onClick={() => navigate("/results/new", {
+                        state: {
+                          questionaireId: data?._id
+                        }
+                      })}
                     >
                       <i className="ri-gamepad-line"></i> Set Result
                     </Button>

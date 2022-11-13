@@ -129,7 +129,11 @@ export default function Fixture() {
                     <Button className="editBtn" onClick={() => navigate("edit")}>
                       <i className="ri-settings-line"></i> Edit
                     </Button>
-                    <Button onClick={() => navigate("/questionaires/new")} className="editBtn">
+                    <Button onClick={() => navigate(`/questionaires/new`,{
+                      state: {
+                        fixtureId: data?.item?._id
+                      }
+                    })} className="editBtn">
                       <i className="ri-message-3-line"></i> Add Questionaire
                     </Button>
                     <Button
@@ -214,7 +218,11 @@ export default function Fixture() {
                     <Button className="editBtn" onClick={() => navigate("edit")}>
                       <i className="ri-settings-line"></i> Edit
                     </Button>
-                    <Button onClick={() => navigate("/questionaires/new")} className="editBtn">
+                    <Button onClick={() => navigate(`/questionaires/new`,{
+                      state: {
+                        fixtureId: data?._id
+                      }
+                    })} className="editBtn">
                       <i className="ri-message-3-line"></i> Add Questionaire
                     </Button>
                     <Button

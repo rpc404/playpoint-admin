@@ -2,14 +2,15 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import { toast } from "react-toastify";
 import { newResults } from "../../api/Results";
+import { useLocation } from "react-router-dom";
 import "./styles/style.css";
 
 export default function NewResult() {
   const [loading, setLoading] = React.useState(false)
   const [result, setResult] = React.useState({
-    questionaireId: "",
     results: [],
   });
+  const params = useLocation()
 
   const [resultOne, setResultOne] = React.useState("");
   const [resultTwo, setResultTwo] = React.useState("");
@@ -31,10 +32,8 @@ export default function NewResult() {
   const handleNewResultSubmit = async () => {
     setLoading(true)
 
-    const {questionaireId} = result;
-
     const data = {
-      questionaireId,
+      questionaireId: params.state?.questionaireId,
       results: [resultOne, resultTwo, resultThree, resultFour]
     }
 
