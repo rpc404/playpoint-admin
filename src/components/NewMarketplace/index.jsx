@@ -42,14 +42,9 @@ export default function NewMarketplace() {
     formData.append("marketplaceName", marketplaceName);
     formData.append("marketplaceCoverImage", marketplaceCoverImage);
     formData.append("tags", tags);
-
-    console.log(newMarketplaceItem);
-    console.log(formData);
-    const marketplacedata = await newMarketplaces(newMarketplaceItem);
-    console.log(marketplacedata);
+    await newMarketplaces(formData);
     setLoading(false);
     toast("Marketplace created successfully!");
-
     handleResetInputs();
   };
 

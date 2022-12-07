@@ -70,11 +70,24 @@ export default function Markteplaces() {
 
         {filteredMarketplaces.length > 0
           ? filteredMarketplaces.map((data, index) => {
-              return <MarketplaceCard marketplace={data} key={index} />;
+              return (
+                <MarketplaceCard
+                  marketplace={data}
+                  key={index}
+                  handleMarketplaceDelete={handleMarketplaceDelete}
+                />
+              );
             })
-          : marketplaces.map((data, index) => (
-              <MarketplaceCard marketplace = {data} key = {index}/>
-            ))}
+          : marketplaces.map((data, index) => {
+            console.log(data)
+            return (
+                <MarketplaceCard
+                  marketplace={data}
+                  key={index}
+                  handleMarketplaceDelete={handleMarketplaceDelete}
+                />
+              );
+            })}
       </div>
     </div>
   );

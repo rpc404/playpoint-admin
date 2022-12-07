@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Typography } from "@mui/material";
 import { getMarketplaceStat } from "../../api/Marketplace";
+import { useNavigate } from "react-router-dom";
 
-const MarketplaceCard = ({ marketplace }) => {
+const MarketplaceCard = ({ marketplace ,handleMarketplaceDelete}) => {
+  console.log(marketplace);
   const [stat, setStat] = React.useState({});
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
@@ -12,6 +14,7 @@ const MarketplaceCard = ({ marketplace }) => {
     setLoading(false);
   }, []);
 
+  const navigate = useNavigate()
 
   return (
     <div className="marketplace__item">
@@ -48,7 +51,7 @@ const MarketplaceCard = ({ marketplace }) => {
           <i className="ri-attachment-line"></i> Add Fixture
         </Button>
         <Button
-          onClick={() => handleMarketplaceDelete(data.item.marketplaceSlug)}
+          onClick={() => handleMarketplaceDelete(marketplace.marketplaceSlug)}
           className="deleteBtn"
         >
           <i className="ri-delete-bin-5-line"></i> Delete

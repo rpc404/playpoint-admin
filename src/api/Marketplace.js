@@ -9,12 +9,14 @@ export const getMarketplaces = async () => {
 };
 
 export const newMarketplaces = async (data) => {
-  console.log(data);
+  console.log("formdata", data);
   return await axios.post(
     import.meta.env.VITE_API_URI + "api/v1/new-marketplace",
     data,
     {
-      headers: { authorization: "Admin-v1_playpoint_admin" },
+      headers: {
+        authorization: "Admin-v1_playpoint_admin",
+      },
     }
   );
 };
@@ -44,12 +46,11 @@ export const updateMarketplace = async (data) => {
 };
 
 export const deleteMarketplace = async (slug) => {
+  console.log(slug);
   await axios.delete(
-    import.meta.env.VITE_API_URI + "api/v1/delete-marketplace",
+    import.meta.env.VITE_API_URI + `api/v1/delete-marketplace/${slug}`,
     {
-      data: {
-        marketplaceSlug: slug,
-      },
+      headers: { authorization: "Admin-v1_playpoint_admin" },
     }
   );
 };
