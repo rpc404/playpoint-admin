@@ -69,7 +69,15 @@ const Admin = () => {
                 <p>Name : {admin.name}</p>
                 <p>
                   <i class="ri-wallet-line"></i> {admin.wallet}{" "}
-                  <i className="ri-clipboard-line" title="copy to clipboard"></i>
+                  <i
+                    className="ri-clipboard-line"
+                    title="copy to clipboard"
+                    onClick={() =>
+                      window.navigator.clipboard.writeText(admin.wallet).then(() => {
+                        toast("wallet address copied!");
+                      })
+                    }
+                  ></i>
                 </p>
                 <p>Role : {admin.role}</p>
                 <div className="button__container">
