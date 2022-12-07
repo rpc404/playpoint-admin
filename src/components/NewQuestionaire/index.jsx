@@ -14,18 +14,22 @@ import "./styles/style.css";
 
 export default function NewQuestionaire() {
   const [loading, setLoading] = React.useState(false);
-  const [formData, setFormData] = React.useState({
-    bidPrice: 5,
-    questionType: 3,
-    poolType: "duo",
-    questionaires: ["", "", ""],
-  });
-  const params =  useLocation();
-
   const [questionOne, setQuestionOne] = React.useState("");
   const [questionTwo, setQuestionTwo] = React.useState("");
   const [questionThree, setQuestionThree] = React.useState("");
   const [questionFour, setQuestionFour] = React.useState("");
+  const [pointsOne, setPointsOne] = React.useState("");
+  const [pointsTwo, setPointsTwo] = React.useState("");
+  const [pointsThree, setPointsThree] = React.useState("");
+  const [pointsFour, setPointsFour] = React.useState("");
+  const [formData, setFormData] = React.useState({
+    bidPrice: 5,
+    questionType: 3,
+    poolType: "duo",
+    questionaires: { questions: ["", "", "", ""], points: ["", "", "", ""] },
+  });
+  const params = useLocation();
+  console.log(params);
 
   const handleQuestionInput = (e, v) => {
     switch (e) {
@@ -46,61 +50,91 @@ export default function NewQuestionaire() {
     }
   };
 
+  const handlePointsInput = (e, v) => {
+    switch (e) {
+      case 0:
+        setPointsOne(v);
+        break;
+      case 1:
+        setPointsTwo(v);
+        break;
+      case 2:
+        setPointsThree(v);
+        break;
+      case 3:
+        setPointsFour(v);
+        break;
+      default:
+        break;
+    }
+  };
+
   const handleResetInputs = () => {
     setFormData({
       bidPrice: 5,
       questionType: 3,
       poolType: "duo",
       questionaires: ["", "", ""],
+      points: ["", "", ""],
     });
 
-    setQuestionOne("")
-    setQuestionTwo("")
-    setQuestionThree("")
-    setQuestionFour("")
-  }
+    setQuestionOne("");
+    setQuestionTwo("");
+    setQuestionThree("");
+    setQuestionFour("");
+    setPointsOne("");
+    setPointsTwo("");
+    setPointsThree("");
+    setPointsFour("");
+  };
 
   const handleQuestionaireSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
-
+    setLoading(true);
     const { bidPrice, questionType, poolType } = formData;
-
     if (questionType === 3) {
       const data = {
         fixtureId: params?.state?.fixtureId,
         bidPrice,
         questionType,
         poolType,
-        questionaires: [questionOne, questionTwo, questionThree],
+        questionaires: {
+          questions: [questionOne, questionTwo, questionThree],
+          points: [pointsOne, pointsTwo, pointsThree],
+        },
       };
-
-      await newQuestionaire(data)
+      await newQuestionaire(data);
     } else {
       const data = {
         fixtureId: params?.state?.fixtureId,
         bidPrice,
         questionType,
         poolType,
-        questionaires: [questionOne, questionTwo, questionThree, questionFour],
+        questionaires: {
+          questions: [questionOne, questionTwo, questionThree, questionFour],
+          points: [pointsOne, pointsTwo, pointsThree, pointsFour],
+        },
       };
 
-      await newQuestionaire(data)
+      await newQuestionaire(data);
     }
 
     setLoading(false);
-    handleResetInputs()
+    handleResetInputs();
     toast("Questionaire created successfully!");
   };
 
   return (
     <div className="newQuestionaire__container">
       <h1>New Questionaire</h1>
-
+      questionaires
+      <p>
+        {params?.state.homeTeam} vs {params?.state.awayTeam}
+      </p>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Bid Price</InputLabel>
         <Select
-        disabled={loading && true}
+          disabled={loading && true}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={formData.bidPrice}
@@ -112,15 +146,13 @@ export default function NewQuestionaire() {
             })
           }
         >
-          <MenuItem value={5}>$5</MenuItem>
-          <MenuItem value={20}>$20</MenuItem>
-          <MenuItem value={50}>$50</MenuItem>
+          <MenuItem value={5}>$10</MenuItem>
         </Select>
       </FormControl>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Question Type</InputLabel>
         <Select
-        disabled={loading && true}
+          disabled={loading && true}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={formData.questionType}
@@ -129,7 +161,10 @@ export default function NewQuestionaire() {
             setFormData({
               ...formData,
               questionType: e.target.value,
-              questionaires: e.target.value === 3 ? ["", "", ""] : ["", "", "", ""],
+              questionaires:
+                e.target.value === 3
+                  ? [questionOne, questionTwo, questionThree]
+                  : [questionOne, questionTwo, questionThree, questionFour],
             });
           }}
         >
@@ -140,7 +175,7 @@ export default function NewQuestionaire() {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Pool Type</InputLabel>
         <Select
-        disabled={loading && true}
+          disabled={loading && true}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={formData.poolType}
@@ -158,45 +193,71 @@ export default function NewQuestionaire() {
           <MenuItem value="unlimited">Unlimited</MenuItem>
         </Select>
       </FormControl>
-
       {formData.questionType === 3
         ? ["", "", ""].map((data, index) => {
             return (
-              <TextField
-                key={index}
-                value={
-                  index === 0
-                    ? questionOne
-                    : index === 1
-                    ? questionTwo
-                    : questionThree
-                }
-                id="outlined-basic"
-                label={`Question ${index + 1}`}
-                variant="outlined"
-                onChange={(e) => handleQuestionInput(index, e.target.value)}
-              />
+              <div className="formQuestion__container" key={index}>
+                <input
+                  type="text"
+                  value={
+                    index === 0
+                      ? questionOne
+                      : index === 1
+                      ? questionTwo
+                      : questionThree
+                  }
+                  placeholder="Question"
+                  label={`Question ${index + 1}`}
+                  onChange={(e) => handleQuestionInput(index, e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={
+                    index === 0
+                      ? pointsOne
+                      : index === 1
+                      ? pointsTwo
+                      : pointsThree
+                  }
+                  placeholder="points"
+                  onChange={(e) => handlePointsInput(index, e.target.value)}
+                />
+              </div>
             );
           })
         : ["", "", "", ""].map((data, index) => {
             return (
-              <TextField
-              disabled={loading && true}
-                key={index}
-                value={
-                  index === 0
-                    ? questionOne
-                    : index === 1
-                    ? questionTwo
-                    : index === 2
-                    ? questionThree
-                    : questionFour
-                }
-                id="outlined-basic"
-                label={`Question ${index + 1}`}
-                variant="outlined"
-                onChange={(e) => handleQuestionInput(index, e.target.value)}
-              />
+              <div className="formQuestion__container" key={index}>
+                <input
+                  type="text"
+                  placeholder="Question"
+                  value={
+                    index === 0
+                      ? questionOne
+                      : index === 1
+                      ? questionTwo
+                      : index === 2
+                      ? questionThree
+                      : questionFour
+                  }
+                  label={`Question ${index + 1}`}
+                  onChange={(e) => handleQuestionInput(index, e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={
+                    index === 0
+                      ? pointsOne
+                      : index === 1
+                      ? pointsTwo
+                      : index === 2
+                      ? pointsThree
+                      : pointsFour
+                  }
+                  placeholder="points"
+                  onChange={(e) => handlePointsInput(index, e.target.value)}
+                />
+              </div>
             );
           })}
       <Button
@@ -205,7 +266,7 @@ export default function NewQuestionaire() {
       >
         Submit
       </Button>
-      <Button>Reset</Button>
+      <Button onClick={() => handleResetInputs()}>Reset</Button>
     </div>
   );
 }

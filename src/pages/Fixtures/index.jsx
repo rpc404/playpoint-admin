@@ -1,11 +1,12 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
-import CountryFlags from "../../mocks/CountryFlags.json";
 import "./styles/style.css";
 import Fuse from "fuse.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteFixture, getFixtures } from "../../api/Fixture";
+// import {getProfiles} from "../../api/Profile"
+import FixtureCard from "../../components/FixtureCard";
 
 export default function Fixture() {
   const [fixtures, setFixtures] = React.useState([]);
@@ -23,10 +24,13 @@ export default function Fixture() {
     setFilteredFixtures(result);
   };
 
+  // console.log(fixtures);
+
   const handleFixtureDelete = async (_id) => {
     toast("Marketplace added to delete queue!");
     setFixtures(fixtures.filter((i) => i._id !== _id));
-    await deleteFixture(_id);
+    const deletedFixture =  await deleteFixture(_id);
+    console.log(deletedFixture) 
     toast("Marketplace deleted successfully!");
   };
 
@@ -35,7 +39,8 @@ export default function Fixture() {
 
     (async () => {
       const res = await getFixtures();
-      setFixtures(res.data.data.reverse());
+      console.log(res)
+      setFixtures(res.data.fixtures.reverse());
     })();
   }, []);
   return (
@@ -59,180 +64,20 @@ export default function Fixture() {
         {filteredFixtures.length > 0
           ? filteredFixtures.map((data, index) => {
               return (
-                <div key={index} className="fixture__item">
-                  <p className="title">
-                    <b>
-                      <i className="ri-gamepad-line"></i> Marketplace
-                    </b>
-                    : {data?.item?.marketplaceSlug}
-                  </p>
-                  <div className="gameDetails">
-                    <span className="homeTeam">
-                      <p>{data?.item?.HomeTeam}</p>
-                      {CountryFlags.map((country, i) => {
-                        return (
-                          (country.name === data.item.HomeTeam ||
-                            (country.name === "United States" &&
-                              data.item.HomeTeam === "USA") ||
-                            (country.name === "South Korea" &&
-                              data.item.HomeTeam === "Korea Republic")) && (
-                            <img
-                              src={country.image}
-                              alt={country.name}
-                              key={i}
-                              loading="lazy"
-                              className="home__Image"
-                            />
-                          )
-                        );
-                      })}
-                    </span>
-                    <span>VS</span>
-                    <span className="awayTeam">
-                      {CountryFlags.map((country, i) => {
-                        return (
-                          (country.name === data.item.AwayTeam ||
-                            (country.name === "United States" &&
-                              data.item.AwayTeam === "USA") ||
-                            (country.name === "South Korea" &&
-                              data.item.AwayTeam === "Korea Republic")) && (
-                            <img
-                              src={country?.image}
-                              alt={country.name}
-                              key={i}
-                              loading="lazy"
-                              className="Away__Image"
-                            />
-                          )
-                        );
-                      })}
-                      <p>{data?.item?.AwayTeam}</p>
-                    </span>
-                  </div>
-
-                  <div className="summary">
-                    <p>
-                      Users
-                      <br /> <b>2158</b>
-                    </p>
-                    <p>
-                      Questions
-                      <br /> <b>12</b>
-                    </p>
-                    <p>
-                      Results
-                      <br /> <b>3</b>
-                    </p>
-                  </div>
-
-                  <div className="actions">
-                    <Button className="editBtn" onClick={() => navigate("edit")}>
-                      <i className="ri-settings-line"></i> Edit
-                    </Button>
-                    <Button onClick={() => navigate(`/questionaires/new`,{
-                      state: {
-                        fixtureId: data?.item?._id
-                      }
-                    })} className="editBtn">
-                      <i className="ri-message-3-line"></i> Add Questionaire
-                    </Button>
-                    <Button
-                      className="deleteBtn"
-                      onClick={() => handleFixtureDelete(data.item._id)}
-                    >
-                      <i className="ri-delete-bin-5-line"></i> Delete
-                    </Button>
-                  </div>
-                </div>
+                <FixtureCard
+                  fixture={data}
+                  key={index}
+                  handleFixtureDelete={handleFixtureDelete}
+                />
               );
             })
           : fixtures.map((data, index) => {
               return (
-                <div key={index} className="fixture__item">
-                  <p className="title">
-                    <b>
-                      <i className="ri-gamepad-line"></i> Marketplace
-                    </b>
-                    : {data.marketplaceSlug}
-                  </p>
-                  <div className="gameDetails">
-                    <span className="homeTeam">
-                      <p>{data.HomeTeam}</p>
-                      {CountryFlags.map((country, i) => {
-                        return (
-                          (country.name === data.HomeTeam ||
-                            (country.name === "United States" &&
-                              data.HomeTeam === "USA") ||
-                            (country.name === "South Korea" &&
-                              data.HomeTeam === "Korea Republic")) && (
-                            <img
-                              src={country.image}
-                              alt={country.name}
-                              key={i}
-                              loading="lazy"
-                              className="home__Image"
-                            />
-                          )
-                        );
-                      })}
-                    </span>
-                    <span>VS</span>
-                    <span className="awayTeam">
-                      {CountryFlags.map((country, i) => {
-                        return (
-                          (country.name === data.AwayTeam ||
-                            (country.name === "United States" &&
-                              data.AwayTeam === "USA") ||
-                            (country.name === "South Korea" &&
-                              data.AwayTeam === "Korea Republic")) && (
-                            <img
-                              src={country?.image}
-                              alt={country.name}
-                              key={i}
-                              loading="lazy"
-                              className="Away__Image"
-                            />
-                          )
-                        );
-                      })}
-                      <p>{data.AwayTeam}</p>
-                    </span>
-                  </div>
-
-                  <div className="summary">
-                    <p>
-                      Users
-                      <br /> <b>2158</b>
-                    </p>
-                    <p>
-                      Questions
-                      <br /> <b>12</b>
-                    </p>
-                    <p>
-                      Results
-                      <br /> <b>3</b>
-                    </p>
-                  </div>
-
-                  <div className="actions">
-                    <Button className="editBtn" onClick={() => navigate("edit")}>
-                      <i className="ri-settings-line"></i> Edit
-                    </Button>
-                    <Button onClick={() => navigate(`/questionaires/new`,{
-                      state: {
-                        fixtureId: data?._id
-                      }
-                    })} className="editBtn">
-                      <i className="ri-message-3-line"></i> Add Questionaire
-                    </Button>
-                    <Button
-                      className="deleteBtn"
-                      onClick={() => handleFixtureDelete(data._id)}
-                    >
-                      <i className="ri-delete-bin-5-line"></i> Delete
-                    </Button>
-                  </div>
-                </div>
+                <FixtureCard
+                  fixture={data}
+                  key={index}
+                  handleFixtureDelete={handleFixtureDelete}
+                />
               );
             })}
       </div>

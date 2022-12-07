@@ -86,7 +86,7 @@ import {
     React.useEffect(() => {
       (async () => {
         const res = await getMarketplaces();
-        const arr = res.data.data.reverse();
+        const arr = res.data.marketplaces;
         setMarketplaces(arr);
       })();
     }, []);

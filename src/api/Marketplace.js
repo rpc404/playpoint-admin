@@ -9,9 +9,30 @@ export const getMarketplaces = async () => {
 };
 
 export const newMarketplaces = async (data) => {
-  await axios.post(
+  console.log(data);
+  return await axios.post(
     import.meta.env.VITE_API_URI + "api/v1/new-marketplace",
-    data
+    data,
+    {
+      headers: { authorization: "Admin-v1_playpoint_admin" },
+    }
+  );
+};
+
+export const getMarketplaceStat = async (slug) => {
+  var marketplaces = await axios.get(
+    import.meta.env.VITE_API_URI + `api/v1/marketplace-stats/${slug}`,
+    {
+      headers: { authorization: "Admin-v1_playpoint_admin" },
+    }
+  );
+
+  return marketplaces;
+};
+
+export const getAllPredictionsByFixture = (f_id) => {
+  return axios.get(
+    import.meta.env.VITE_API_URI + `api/v1/prediction?fixtureid=${f_id}`
   );
 };
 

@@ -26,4 +26,30 @@
 }
 .newQuestionaire__container .MuiButton-root.submitBtn {
   background: #27ae60;
+}
+.newQuestionaire__container .formQuestion__container {
+  position: relative;
+  display: flex;
+  width: 40vw;
+}
+.newQuestionaire__container .formQuestion__container input {
+  height: 23px;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 23px;
+  outline: none;
+  padding: 32px;
+  font-size: 1.1em;
+}
+.newQuestionaire__container .formQuestion__container input :active {
+  border: none;
+}
+.newQuestionaire__container .formQuestion__container input:nth-of-type(1) {
+  width: 80%;
+}
+.newQuestionaire__container .formQuestion__container input:nth-of-type(2) {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  width: 20%;
 }/*# sourceMappingURL=style.css.map */
