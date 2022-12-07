@@ -3,7 +3,7 @@ import { Button, Typography } from "@mui/material";
 import { getMarketplaceStat } from "../../api/Marketplace";
 import { useNavigate } from "react-router-dom";
 
-const MarketplaceCard = ({ marketplace ,handleMarketplaceDelete}) => {
+const MarketplaceCard = ({ marketplace, handleMarketplaceDelete }) => {
   console.log(marketplace);
   const [stat, setStat] = React.useState({});
   const [loading, setLoading] = React.useState(true);
@@ -14,7 +14,7 @@ const MarketplaceCard = ({ marketplace ,handleMarketplaceDelete}) => {
     setLoading(false);
   }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="marketplace__item">
@@ -41,7 +41,17 @@ const MarketplaceCard = ({ marketplace ,handleMarketplaceDelete}) => {
         </li> */}
       </ul>
       <div className="actions">
-        <Button className="editBtn" onClick={() => navigate("edit")}>
+        <Button
+          className="editBtn"
+          onClick={() =>
+            navigate("/marketplaces/edit", {
+              state: {
+                marketplace: marketplace,
+                marketplaceSlug:marketplace?.marketplaceSlug
+              },
+            })
+          }
+        >
           <i className="ri-settings-line"></i> Edit
         </Button>
         <Button

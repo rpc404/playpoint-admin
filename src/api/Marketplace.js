@@ -39,9 +39,13 @@ export const getAllPredictionsByFixture = (f_id) => {
 };
 
 export const updateMarketplace = async (data) => {
+  console.log(data);
   await axios.patch(
     import.meta.env.VITE_API_URI + "api/v1/update-marketplace",
-    data
+    data,
+    {
+      headers: { authorization: "Admin-v1_playpoint_admin" },
+    }
   );
 };
 
