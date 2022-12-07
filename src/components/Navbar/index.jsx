@@ -23,6 +23,9 @@ export default function Navbar() {
       case "r":
         navigate("/results");
         break;
+      case "a":
+      navigate("/admin");
+      break;
       default:
         break;
     }
@@ -61,6 +64,12 @@ export default function Navbar() {
         onClick={() => handleActiveTab("r")}
       >
         <i className="ri-folder-chart-line"></i>Results
+      </div>
+      <div
+        className={activeTab === "a" ? "active": ""}
+        onClick={() => handleActiveTab("a")}
+      >
+        <i className="ri-folder-chart-line"></i>Admins
       </div>
     </div>
   );

@@ -19,6 +19,7 @@ import Markteplaces from "./pages/Marketplaces";
 import Questionaires from "./pages/Questionaires";
 import Results from "./pages/Results";
 import Login from "./pages/Login/Login";
+import Admin from "./pages/Admins";
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="results/new" element={<NewResult />} />
         <Route path="results/edit" element={<EditResult />} />
         <Route path="login" element={<Login />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
       <ToastContainer />
     </div>
