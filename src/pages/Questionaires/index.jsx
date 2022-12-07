@@ -18,7 +18,7 @@ export default function Questionaires() {
       keys: ["questionaires", "marketplaceSlug"],
     };
 
-    const fuse = new Fuse(QuestionairesList, options);
+    const fuse = new Fuse(questionaires, options);
     const result = fuse.search(e.target.value);
     setFilteredQuestionaires(result);
   };
@@ -29,7 +29,7 @@ export default function Questionaires() {
     (async () => {
       const res = await getQuestionaires();
 
-      setQuestionaires(res.data.data.reverse());
+      setQuestionaires(res.data.questionaires.reverse());
     })();
   }, []);
 
@@ -65,12 +65,16 @@ export default function Questionaires() {
           ? filteredQuestionaires.map((data, index) => {
               return (
                 <div className="questionaire__item" key={index}>
-                  <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" loading="lazy"/>
+                  <img
+                    src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt=""
+                    loading="lazy"
+                  />
                   <div className="marketplaceSlug">
                     {/* <b>Marketplace</b>: {data?.item?.marketplaceSlug} */}
                   </div>
                   <div className="fixture">
-                    <b>Fixture</b>: {data?.item?.fixtureId}
+                    {/* <b>Fixture</b>: {data?.item?.fixtureId} */}
                   </div>
 
                   <ul>
@@ -79,20 +83,28 @@ export default function Questionaires() {
                     })}
                   </ul>
                   <div className="actions">
-                    <Button onClick={() => navigate("edit")} className="editBtn">
+                    <Button
+                      onClick={() => navigate("edit")}
+                      className="editBtn"
+                    >
                       <i className="ri-settings-line"></i> Edit
                     </Button>
                     <Button
                       className="resultBtn"
-                      onClick={() => navigate("/results/new", {
-                        state: {
-                          questionaireId: data?.item?._id
-                        }
-                      })}
+                      onClick={() =>
+                        navigate("/results/new", {
+                          state: {
+                            questionaireId: data?.item?._id,
+                          },
+                        })
+                      }
                     >
                       <i className="ri-gamepad-line"></i> Set Result
                     </Button>
-                    <Button onClick={() => handleQuestinaireDelete(data.item._id)} className="deleteBtn">
+                    <Button
+                      onClick={() => handleQuestinaireDelete(data.item._id)}
+                      className="deleteBtn"
+                    >
                       <i className="ri-delete-bin-5-line"></i> Delete
                     </Button>
                   </div>
@@ -100,37 +112,70 @@ export default function Questionaires() {
               );
             })
           : questionaires.map((data, index) => {
+              console.log(data);
               return (
                 <div className="questionaire__item" key={index}>
-                  <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" loading="lazy"/>
+                  <img
+                    src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt=""
+                    loading="lazy"
+                  />
 
                   <div className="marketplaceSlug">
                     {/* <b>Marketplace</b>: {data.marketplaceSlug} */}
                   </div>
                   <div className="fixture">
-                    <b>Fixture</b>: {data.fixtureId}
+                    <b>Fixture</b>: {data?.fixtureId?.HomeTeam} vs{" "}
+                    {data?.fixtureId?.AwayTeam}
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    <ul>
+                      {data?.questionaires.questions.map((question, index) => {
+                        return <li key={index}>{question}</li>;
+                      })}
+                    </ul>
+                    <ul>
+                      {data?.questionaires.points.map((point, index) => {
+                        return (
+                          <li
+                            key={index}
+                            style={{ listStyle: "none", color: "green" }}
+                          >
+                            {point}
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
 
-                  <ul>
-                    {data?.questionaires.map((question, index) => {
-                      return <li key={index}>{question}</li>;
-                    })}
-                  </ul>
                   <div className="actions">
-                    <Button onClick={() => navigate("edit")} className="editBtn">
+                    <Button
+                      onClick={() =>
+                        navigate("edit", {
+                          state: data,
+                        })
+                      }
+                      className="editBtn"
+                    >
                       <i className="ri-settings-line"></i> Edit
                     </Button>
                     <Button
                       className="resultBtn"
-                      onClick={() => navigate("/results/new", {
-                        state: {
-                          questionaireId: data?._id
-                        }
-                      })}
+                      onClick={() =>
+                        navigate(`/results/new`, {
+                          state: {
+                            questions: data?.questionaires.questions,
+                            qid: data?._id,
+                          },
+                        })
+                      }
                     >
                       <i className="ri-gamepad-line"></i> Set Result
                     </Button>
-                    <Button onClick={() => handleQuestinaireDelete(data._id)} className="deleteBtn">
+                    <Button
+                      onClick={() => handleQuestinaireDelete(data._id)}
+                      className="deleteBtn"
+                    >
                       <i className="ri-delete-bin-5-line"></i> Delete
                     </Button>
                   </div>
@@ -139,6 +184,5 @@ export default function Questionaires() {
             })}
       </div>
     </div>
-    
   );
 }

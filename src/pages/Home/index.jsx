@@ -13,6 +13,7 @@ export default function Home() {
 
     (async () => {
       const res = await getStats();
+      console.log(res);
       setStats(res.data.stat);
     })();
   }, []);

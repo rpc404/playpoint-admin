@@ -9,26 +9,52 @@ export const getMarketplaces = async () => {
 };
 
 export const newMarketplaces = async (data) => {
-  await axios.post(
+  console.log("formdata", data);
+  return await axios.post(
     import.meta.env.VITE_API_URI + "api/v1/new-marketplace",
-    data
+    data,
+    {
+      headers: {
+        authorization: "Admin-v1_playpoint_admin",
+      },
+    }
+  );
+};
+
+export const getMarketplaceStat = async (slug) => {
+  var marketplaces = await axios.get(
+    import.meta.env.VITE_API_URI + `api/v1/marketplace-stats/${slug}`,
+    {
+      headers: { authorization: "Admin-v1_playpoint_admin" },
+    }
+  );
+
+  return marketplaces;
+};
+
+export const getAllPredictionsByFixture = (f_id) => {
+  return axios.get(
+    import.meta.env.VITE_API_URI + `api/v1/prediction?fixtureid=${f_id}`
   );
 };
 
 export const updateMarketplace = async (data) => {
+  console.log(data);
   await axios.patch(
     import.meta.env.VITE_API_URI + "api/v1/update-marketplace",
-    data
+    data,
+    {
+      headers: { authorization: "Admin-v1_playpoint_admin" },
+    }
   );
 };
 
 export const deleteMarketplace = async (slug) => {
+  console.log(slug);
   await axios.delete(
-    import.meta.env.VITE_API_URI + "api/v1/delete-marketplace",
+    import.meta.env.VITE_API_URI + `api/v1/delete-marketplace/${slug}`,
     {
-      data: {
-        marketplaceSlug: slug,
-      },
+      headers: { authorization: "Admin-v1_playpoint_admin" },
     }
   );
 };

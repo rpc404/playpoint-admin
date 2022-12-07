@@ -3,14 +3,17 @@ import React from "react";
 import ResultsList from "../../mocks/Results.json";
 import Fuse from "fuse.js";
 import "./styles/style.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteResults, getResults } from "../../api/Results";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 export default function Results() {
+  const {qid} = useParams()
   const [results, setResults] = React.useState([]);
   const [filteredResults, setFilteredResults] = React.useState([]);
   const navigate = useNavigate()
+  const location = useLocation()
 
   const filter = (e) => {
     const options = {

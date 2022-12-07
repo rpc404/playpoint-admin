@@ -8,6 +8,14 @@
 .newresult__container .MuiTextField-root {
   width: 40vw;
 }
+.newresult__container .textfield__container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.newresult__container .textfield__container p {
+  width: 40vw;
+}
 .newresult__container .MuiButton-root {
   background: #2c3e50;
   color: #fff;

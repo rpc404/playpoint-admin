@@ -32,4 +32,31 @@
           background: #27ae60;
         }
       }
-}
+
+      .formQuestion__container {
+        position: relative;
+        display: flex;
+        width: 40vw;
+        input {
+          height: 23px;
+          color: rgba($color: #000000, $alpha: 0.87);
+          line-height: 23px;
+          outline: none;
+          padding: 32px;
+          font-size: 1.1em;
+          :active{
+            border: none;
+          }
+          &:nth-of-type(1){
+            width: 80%;
+          }
+          &:nth-of-type(2){
+            position: absolute;
+            right: 0px;
+            top: 0;
+            bottom: 0;
+            width: 20%;
+          }
+        }
+      }
+    }

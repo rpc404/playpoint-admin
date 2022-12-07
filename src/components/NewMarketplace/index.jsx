@@ -42,13 +42,10 @@ export default function NewMarketplace() {
     formData.append("marketplaceName", marketplaceName);
     formData.append("marketplaceCoverImage", marketplaceCoverImage);
     formData.append("tags", tags);
-
-    await newMarketplaces(formData)
-
+    await newMarketplaces(formData);
     setLoading(false);
     toast("Marketplace created successfully!");
-
-    handleResetInputs()
+    handleResetInputs();
   };
 
   return (
@@ -90,14 +87,14 @@ export default function NewMarketplace() {
           id="outlined-basic"
           label="Marketplace Slug"
           variant="outlined"
-          value={newMarketplaceItem.marketplaceSlug}
+          value={newMarketplaceItem.marketplaceSlug || ""}
         />
         <TextField
           disabled={loading && true}
           id="outlined-basic"
           label="Marketplace Name"
           variant="outlined"
-          value={newMarketplaceItem.marketplaceName}
+          value={newMarketplaceItem.marketplaceName || ""}
           onChange={handleMarketplaceSlug}
         />
         <TextField
@@ -105,7 +102,7 @@ export default function NewMarketplace() {
           id="outlined-basic"
           label="Tags"
           variant="outlined"
-          value={newMarketplaceItem.tags}
+          value={newMarketplaceItem.tags || ""}
           onChange={(e) =>
             setNewMarketplaceItem({
               ...newMarketplaceItem,
@@ -113,7 +110,7 @@ export default function NewMarketplace() {
             })
           }
         />
-        <Button disabled={loading && true} className="submitBtn" type="submit">
+        <Button className="submitBtn" type="submit">
           Submit
         </Button>
         <Button disabled={loading && true} onClick={() => handleResetInputs()}>
