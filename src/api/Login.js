@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { getProfiles } from "../api/Profile";
+import { getAdmin } from "../api/AdminStats";
 
 const { ethereum } = window;
 
@@ -21,16 +21,8 @@ export const handleRPCWalletLogin = async () => {
         );
 
       if (userAddress[0]) {
-        await getProfiles(userAddress[0]).then((res) => {
-          const userdetails = res.data.profile;
-        });
+        return await getAdmin(userAddress[0])
       }
-    //   const currentDate = new Date();
-    //   currentDate.setTime(currentDate.getTime() + 6 * 60 * 60 * 1000);
-    //   localStorage.setItem("rpcUserData", JSON.stringify(tempRpcData));
-    //   localStorage.setItem("isRPCUserAuthenticated", true);
-    //   localStorage.setItem("rpcUserExpiresAt", currentDate);
-    //   return tempRpcData;
     } else alert("Metamask is not installed!");
   } catch (error) {
     console.error(error);

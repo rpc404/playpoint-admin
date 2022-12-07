@@ -15,7 +15,7 @@ const Admin = () => {
     },[])
 
     const handleSubmit = async () => {
-        const user = await addAdmin({wallet, role, name})
+        const user = await addAdmin({wallet: wallet.toLowerCase(), role, name})
         if(user.status==201){
             setAdmins([...admins,user.data]);
             toast("New Admin Added")

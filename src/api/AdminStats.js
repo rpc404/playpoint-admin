@@ -30,6 +30,14 @@ export const allAdmins = async () => {
   return stats;
 };
 
+export const getAdmin = async (wallet) => {
+  var stats = await axios.get(
+    import.meta.env.VITE_API_URI + "api/v1/admin/"+wallet,
+    config
+  );
+  return stats;
+};
+
 export const removeAdmin = async (data) => {
   var stats = await axios.post(
     import.meta.env.VITE_API_URI + "api/v1/delete-admin",
