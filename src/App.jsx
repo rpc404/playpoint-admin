@@ -1,7 +1,7 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { Route, useNavigate, Routes, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import EditFixture from "./components/EditFixture";
 import EditMarketplace from "./components/Editmarketplace";
 import EditQuestionaire from "./components/EditQuestionaire";
@@ -18,17 +18,22 @@ import Home from "./pages/Home";
 import Markteplaces from "./pages/Marketplaces";
 import Questionaires from "./pages/Questionaires";
 import Results from "./pages/Results";
+import Login from "./pages/Login/Login";
+import Admin from "./pages/Admins";
+
 
 export default function App() {
+
+
   return (
     <div className="app__container">
       <Topbar />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="marketplaces" element={<Markteplaces />}/>
-        <Route path="marketplaces/new" element={<NewMarketplace />}/>
-        <Route path="marketplaces/edit" element={<EditMarketplace />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="marketplaces" element={<Markteplaces />} />
+        <Route path="marketplaces/new" element={<NewMarketplace />} />
+        <Route path="marketplaces/edit" element={<EditMarketplace />} />
         <Route path="fixtures" element={<Fixture />} />
         <Route path="fixtures/new" element={<NewFixture />} />
         <Route path="fixtures/edit" element={<EditFixture />} />
@@ -38,8 +43,10 @@ export default function App() {
         <Route path="results" element={<Results />} />
         <Route path="results/new" element={<NewResult />} />
         <Route path="results/edit" element={<EditResult />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="login" element={<Login />} />
       </Routes>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }
