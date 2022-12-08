@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const [activeTab, setActiveTab] = React.useState("h");
 
-  const [user, setUser] = React.useState({}) || false;
+  const [user, setUser] = React.useState(false);
   const navigate = useNavigate()
   const url = window.location.pathname;
   React.useEffect(()=>{
@@ -15,8 +15,9 @@ export default function Navbar() {
     if(_user){
       setUser(JSON.parse(_user))
     }else{
-      if(url!=="/login")
-      navigate("/login")
+      if(url!=="/login"){
+        navigate("/login")
+      }
     }
   },[url])
 
@@ -55,6 +56,7 @@ export default function Navbar() {
 
   return (
     <>
+    {console.log(user)}
     {
       user ?   <div className="navbar__container">
       <div
