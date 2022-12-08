@@ -42,8 +42,11 @@ const Admin = () => {
     <div className="admin__container">
       <div className="form__container">
         <div className="form">
+          <h3>Add admin</h3>
           <input
             placeholder="name"
+            name="name"
+            id="name"
             onChange={(e) => setname(e.target.value)}
             value={name}
           />
@@ -62,20 +65,23 @@ const Admin = () => {
         </div>
       </div>
       <div className="all_admins">
+        <h2>Admins</h2>
         <div className="admins">
           {admins.map((admin, index) => {
             return (
               <div className="box" key={index}>
                 <p>Name : {admin.name}</p>
                 <p>
-                  <i class="ri-wallet-line"></i> {admin.wallet}{" "}
+                  <i className="ri-wallet-line"></i> {admin.wallet}{" "}
                   <i
                     className="ri-clipboard-line"
                     title="copy to clipboard"
                     onClick={() =>
-                      window.navigator.clipboard.writeText(admin.wallet).then(() => {
-                        toast("wallet address copied!");
-                      })
+                      window.navigator.clipboard
+                        .writeText(admin.wallet)
+                        .then(() => {
+                          toast("wallet address copied!");
+                        })
                     }
                   ></i>
                 </p>
