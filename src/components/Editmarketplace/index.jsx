@@ -7,20 +7,28 @@ import { updateMarketplace } from "../../api/Marketplace";
 export default function EditMarketplace() {
   const navigate = useNavigate();
   const params = useLocation();
+  console.log(params)
   const [editMarketplaceItem, setEditMarketplaceItem] = React.useState({
     marketplaceName: "",
-    marketplaceSlug: "",
-    marketplaceCoverImage: null,
     tags: "",
+    marketplaceSlug: params?.state.marketpalceSlug,
   });
   const [loading, setLoading] = React.useState(false);
 
   const handleResetInputs = () => {
     setEditMarketplaceItem({
       marketplaceName: "",
-      marketplaceSlug: "",
       tags: "",
-      marketplaceCoverImage:null,
+    });
+  };
+
+  const handleMarketplaceSlug = (e) => {
+    setNewMarketplaceItem({
+      ...newMarketplaceItem,
+      marketplaceSlug:
+        e.target.value.replace(/ /g, "-") +
+        Math.floor(Math.random() * (999 - 100 + 1) + 100),
+      marketplaceName: e.target.value,
     });
   };
 
@@ -32,13 +40,11 @@ export default function EditMarketplace() {
   const handleMarketplaceSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const { marketplaceName, marketplaceSlug, tags, marketplaceCoverImage } =
-      editMarketplaceItem;
+    const { marketplaceName, marketplaceSlug, tags } = editMarketplaceItem;
     await updateMarketplace({
       marketplaceSlug,
       marketplaceName,
       tags,
-      marketplaceCoverImage,
     });
     setLoading(false);
     toast("Marketplace updated successfully!");
@@ -63,37 +69,22 @@ export default function EditMarketplace() {
         onSubmit={handleMarketplaceSubmit}
       >
         <label>Marketplace Cover Image</label>
-        {/* <img
-          src={
-            editMarketplaceItem.marketplaceCoverImage
-              ? URL.createObjectURL(editMarketplaceItem.marketplaceCoverImage)
-              : "https://images.unsplash.com/photo-1611071536600-036ef2b47de0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-          }
+        <img
+          src={editMarketplaceItem?.marketplaceCoverImage?.url}
           loading="lazy"
-        /> */}
-        <input
-          type="file"
-          name="marketplaceSlug"
-          id=""
-          onChange={(e) =>
-            setEditMarketplaceItem({
-              ...editMarketplaceItem,
-              marketplaceCoverImage: e.target.files[0],
-            })
-          }
         />
         <TextField
           id="outlined-basic"
           label="Marketplace Slug"
           variant="outlined"
-          value={params?.state.marketplaceSlug || ""}
+          value={editMarketplaceItem.marketplaceSlug || " "}
           disabled
         />
         <TextField
           id="outlined-basic"
           label="Marketplace Name"
           variant="outlined"
-          // value={editMarketplaceItem.marketplaceName || ""}
+          value={editMarketplaceItem.marketplaceName || " "}
           onChange={(e) =>
             setEditMarketplaceItem({
               ...editMarketplaceItem,
@@ -105,7 +96,7 @@ export default function EditMarketplace() {
           id="outlined-basic"
           label="Tags"
           variant="outlined"
-          // value={editMarketplaceItem.tags || ""}
+          value={editMarketplaceItem.tags || ""}
           onChange={(e) =>
             setEditMarketplaceItem({
               ...editMarketplaceItem,
