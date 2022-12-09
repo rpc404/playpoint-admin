@@ -7,7 +7,7 @@ import { updateMarketplace } from "../../api/Marketplace";
 export default function EditMarketplace() {
   const navigate = useNavigate();
   const params = useLocation();
-  console.log(params)
+  // console.log(params)
   const [editMarketplaceItem, setEditMarketplaceItem] = React.useState({
     marketplaceName: "",
     tags: "",
@@ -19,12 +19,13 @@ export default function EditMarketplace() {
     setEditMarketplaceItem({
       marketplaceName: "",
       tags: "",
+      marketplaceSlug:""
     });
   };
 
   const handleMarketplaceSlug = (e) => {
-    setNewMarketplaceItem({
-      ...newMarketplaceItem,
+    setEditMarketplaceItem({
+      ...editMarketplaceItem,
       marketplaceSlug:
         e.target.value.replace(/ /g, "-") +
         Math.floor(Math.random() * (999 - 100 + 1) + 100),
@@ -77,26 +78,27 @@ export default function EditMarketplace() {
           id="outlined-basic"
           label="Marketplace Slug"
           variant="outlined"
-          value={editMarketplaceItem.marketplaceSlug || " "}
+          // value={editMarketplaceItem.marketplaceSlug || " "}
           disabled
         />
         <TextField
           id="outlined-basic"
           label="Marketplace Name"
           variant="outlined"
-          value={editMarketplaceItem.marketplaceName || " "}
-          onChange={(e) =>
-            setEditMarketplaceItem({
-              ...editMarketplaceItem,
-              marketplaceName: e.target.value,
-            })
-          }
+          // value={editMarketplaceItem.marketplaceName || " "}
+          // onChange={(e) =>
+          //   setEditMarketplaceItem({
+          //     ...editMarketplaceItem,
+          //     marketplaceName: e.target.value,
+          //   })
+          // }
+          onChange={handleMarketplaceSlug}
         />
         <TextField
           id="outlined-basic"
           label="Tags"
           variant="outlined"
-          value={editMarketplaceItem.tags || ""}
+          // value={editMarketplaceItem.tags || ""}
           onChange={(e) =>
             setEditMarketplaceItem({
               ...editMarketplaceItem,

@@ -2,6 +2,13 @@ import React from "react";
 import { toast } from "react-toastify";
 import { addAdmin, allAdmins, removeAdmin } from "../../api/AdminStats";
 import "./styles/style.css";
+import {
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 
 const Admin = () => {
   const [wallet, setWallet] = React.useState("");
@@ -43,24 +50,31 @@ const Admin = () => {
       <div className="form__container">
         <div className="form">
           <h3>Add admin</h3>
-          <input
-            placeholder="name"
-            name="name"
+          <TextField
             id="name"
-            onChange={(e) => setname(e.target.value)}
+            variant="outlined"
+            label="name"
             value={name}
+            onChange={(e) => setname(e.target.value)}
           />
-          <input
-            placeholder="address"
+          <TextField
+            label="address"
             onChange={(e) => setWallet(e.target.value)}
-            value={wallet}
           />
-          <select onChange={(e) => setRole(e.target.value)} value={role}>
-            <option value={""}>Choose Role</option>
-            <option value={"admin"}>Admin</option>
-            <option value={"superadmin"}>Super Admin</option>
-            <option value={"analytics"}>Analytics</option>
-          </select>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Choose Role</InputLabel>
+            <Select
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Choose Role"
+            >
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="superadmin">Super Admin</MenuItem>
+              <MenuItem value="analytics">Analytics</MenuItem>
+            </Select>
+          </FormControl>
           <button onClick={() => handleSubmit()}>add admin</button>
         </div>
       </div>
