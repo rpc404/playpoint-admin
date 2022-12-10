@@ -5,7 +5,21 @@
     justify-content: center;
     align-items: center;
     width: 50vw;
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    height: 97.3vh;
+    position: relative;
+    background: url("https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($color: #000000, $alpha: 0.8);
+    }
     .form {
       display: flex;
       flex-direction: column;
@@ -18,12 +32,27 @@
       gap: 20px;
       width: 25vw;
       background-color: #fff;
+      z-index: 2;
+      label {
+        color: #0009;
+      }
+      h3 {
+        text-align: center;
+        margin: 0.5em 0;
+      }
       input {
         padding: 0.8em;
         outline: none;
         font-size: 1.1em;
+        border-radius: 0.3em;
+        background-color: #eee;
+        border: 2px solid rgb(129, 129, 129);
         &:active {
           outline: none;
+        }
+        &:focus {
+          border: 2px solid #436aea;
+          background-color: #fff;
         }
       }
       select {
@@ -41,9 +70,11 @@
         cursor: pointer;
         border-radius: 3px;
         border: none;
-        background-color: #fdfbfb;
+        background-color: #436aea;
         border: 1px solid rgb(128, 128, 128);
         transition: 0.2s;
+        color: #fff;
+
         &:active {
           scale: 0.95;
         }
@@ -55,7 +86,24 @@
     height: 97vh;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 50px;
     width: 50vw;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: rgba($color: rgb(197, 197, 197), $alpha: 0.8);
+    }
+    h2 {
+      text-decoration: underline;
+      padding: 0.5em;
+      z-index: 1;
+    }
     .admins {
       display: flex;
       flex-direction: column;
@@ -68,8 +116,10 @@
         padding: 1.1em;
         box-shadow: 0px 10px 21px 5px rgb(0 0 0 / 10%);
         border-radius: 5px;
+        background-color: #fff;
         color: #5a5a5a;
         transition: 0.5s ease;
+        z-index: 2;
         &:hover {
           scale: 1.05;
           cursor: pointer;
