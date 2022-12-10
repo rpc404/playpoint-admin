@@ -56,7 +56,6 @@ export default function Navbar() {
 
   return (
     <>
-    {console.log(user)}
     {
       user ?   <div className="navbar__container">
       <div
@@ -89,12 +88,15 @@ export default function Navbar() {
       >
         <i className="ri-folder-chart-line"></i>Results
       </div>
-      <div
+      {
+        user.role="superadmin" &&  <div
         className={activeTab === "a" ? "active": ""}
         onClick={() => handleActiveTab("a")}
       >
         <i className="ri-admin-line"></i>Admins
       </div>
+      }
+     
       <div
         className={""}
       >
