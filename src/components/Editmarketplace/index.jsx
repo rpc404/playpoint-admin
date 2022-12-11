@@ -7,24 +7,25 @@ import { updateMarketplace } from "../../api/Marketplace";
 export default function EditMarketplace() {
   const navigate = useNavigate();
   const params = useLocation();
-  console.log(params)
+  // console.log(params)
   const [editMarketplaceItem, setEditMarketplaceItem] = React.useState({
     marketplaceName: "",
+    marketplaceSlug: "",
     tags: "",
-    marketplaceSlug: params?.state.marketpalceSlug,
   });
   const [loading, setLoading] = React.useState(false);
 
   const handleResetInputs = () => {
     setEditMarketplaceItem({
       marketplaceName: "",
+      marketplaceSlug: "",
       tags: "",
     });
   };
 
   const handleMarketplaceSlug = (e) => {
-    setNewMarketplaceItem({
-      ...newMarketplaceItem,
+    setEditMarketplaceItem({
+      ...editMarketplaceItem,
       marketplaceSlug:
         e.target.value.replace(/ /g, "-") +
         Math.floor(Math.random() * (999 - 100 + 1) + 100),
@@ -85,12 +86,7 @@ export default function EditMarketplace() {
           label="Marketplace Name"
           variant="outlined"
           value={editMarketplaceItem.marketplaceName || " "}
-          onChange={(e) =>
-            setEditMarketplaceItem({
-              ...editMarketplaceItem,
-              marketplaceName: e.target.value,
-            })
-          }
+          onChange={handleMarketplaceSlug}
         />
         <TextField
           id="outlined-basic"

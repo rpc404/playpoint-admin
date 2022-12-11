@@ -36,9 +36,8 @@
   align-items: flex-start;
 }
 .questionaire__container .questionaire__items .questionaire__item {
-  max-width: 28vw;
+  width: 90vw;
   cursor: pointer;
-  min-width: 28vw;
   font-size: 15px;
   flex-direction: column;
   box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
@@ -54,6 +53,11 @@
   -webkit-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
   -moz-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
   transform: scale(1.05);
+}
+@media screen and (min-width: 576px) {
+  .questionaire__container .questionaire__items .questionaire__item {
+    max-width: 28vw;
+  }
 }
 .questionaire__container .questionaire__items .questionaire__item img {
   width: 100%;

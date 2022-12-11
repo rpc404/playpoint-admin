@@ -40,29 +40,6 @@
         text-align: center;
         margin: 0.5em 0;
       }
-      input {
-        padding: 0.8em;
-        outline: none;
-        font-size: 1.1em;
-        border-radius: 0.3em;
-        background-color: #eee;
-        border: 2px solid rgb(129, 129, 129);
-        &:active {
-          outline: none;
-        }
-        &:focus {
-          border: 2px solid #436aea;
-          background-color: #fff;
-        }
-      }
-      select {
-        padding: 0.8em;
-        outline: none;
-        font-size: 1.1em;
-        &:active {
-          outline: none;
-        }
-      }
       button {
         padding: 0.8em;
         text-transform: capitalize;
@@ -70,7 +47,8 @@
         cursor: pointer;
         border-radius: 3px;
         border: none;
-        background-color: #436aea;
+        background-color: #4C82FB;
+        text-shadow: 0 1px ;
         border: 1px solid rgb(128, 128, 128);
         transition: 0.2s;
         color: #fff;
