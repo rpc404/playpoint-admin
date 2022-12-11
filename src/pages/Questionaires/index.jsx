@@ -112,7 +112,7 @@ export default function Questionaires() {
               );
             })
           : questionaires.map((data, index) => {
-              console.log(data);
+            
               return (
                 <div className="questionaire__item" key={index}>
                   <img
