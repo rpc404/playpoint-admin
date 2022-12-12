@@ -2,6 +2,13 @@ import React from "react";
 import { toast } from "react-toastify";
 import { addAdmin, allAdmins, removeAdmin } from "../../api/AdminStats";
 import "./styles/style.css";
+import {
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 
 const Admin = () => {
   const [wallet, setWallet] = React.useState("");
@@ -42,40 +49,53 @@ const Admin = () => {
     <div className="admin__container">
       <div className="form__container">
         <div className="form">
-          <input
-            placeholder="name"
-            onChange={(e) => setname(e.target.value)}
+          <h3>Add admin</h3>
+          <TextField
+            id="name"
+            variant="outlined"
+            label="name"
             value={name}
+            onChange={(e) => setname(e.target.value)}
           />
-          <input
-            placeholder="address"
+          <TextField
+            label="address"
             onChange={(e) => setWallet(e.target.value)}
-            value={wallet}
           />
-          <select onChange={(e) => setRole(e.target.value)} value={role}>
-            <option value={""}>Choose Role</option>
-            <option value={"admin"}>Admin</option>
-            <option value={"superadmin"}>Super Admin</option>
-            <option value={"analytics"}>Analytics</option>
-          </select>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Choose Role</InputLabel>
+            <Select
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Choose Role"
+            >
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="superadmin">Super Admin</MenuItem>
+              <MenuItem value="analytics">Analytics</MenuItem>
+            </Select>
+          </FormControl>
           <button onClick={() => handleSubmit()}>add admin</button>
         </div>
       </div>
       <div className="all_admins">
+        <h2>Admins</h2>
         <div className="admins">
           {admins.map((admin, index) => {
             return (
               <div className="box" key={index}>
                 <p>Name : {admin.name}</p>
                 <p>
-                  <i class="ri-wallet-line"></i> {admin.wallet}{" "}
+                  <i className="ri-wallet-line"></i> {admin.wallet}{" "}
                   <i
                     className="ri-clipboard-line"
                     title="copy to clipboard"
                     onClick={() =>
-                      window.navigator.clipboard.writeText(admin.wallet).then(() => {
-                        toast("wallet address copied!");
-                      })
+                      window.navigator.clipboard
+                        .writeText(admin.wallet)
+                        .then(() => {
+                          toast("wallet address copied!");
+                        })
                     }
                   ></i>
                 </p>
