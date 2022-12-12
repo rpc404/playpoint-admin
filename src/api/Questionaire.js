@@ -7,6 +7,14 @@ export const getQuestionaires = async () => {
 
   return questionaires;
 };
+
+export const getQuestionairesByFixture = async (fixtureid) => {
+  var questionaires = await axios.get(
+    import.meta.env.VITE_API_URI + "api/v1/questionaires/"+fixtureid
+  );
+  return questionaires;
+};
+
 export const newQuestionaire = async (data) => {
   console.log(data);
   return await axios.post(

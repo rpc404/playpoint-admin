@@ -3,14 +3,15 @@ import React from "react";
 // import QuestionairesList from "../../mocks/Questionaires.json";
 import "./styles/style.css";
 import Fuse from "fuse.js";
-import { useNavigate } from "react-router-dom";
-import { deleteQuestionaire, getQuestionaires } from "../../api/Questionaire";
+import { useLocation, useNavigate } from "react-router-dom";
+import { deleteQuestionaire, getQuestionaires, getQuestionairesByFixture } from "../../api/Questionaire";
 import { toast } from "react-toastify";
 
 export default function Questionaires() {
   const [questionaires, setQuestionaires] = React.useState([]);
   const [filteredQuestionaires, setFilteredQuestionaires] = React.useState([]);
   const navigate = useNavigate();
+  const params = useLocation()
 
   const filter = (e) => {
     const options = {
@@ -25,11 +26,10 @@ export default function Questionaires() {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-
     (async () => {
-      const res = await getQuestionaires();
-
-      setQuestionaires(res.data.questionaires.reverse());
+      const res = await getQuestionairesByFixture(params.state.fixtureId);
+      console.log(res)
+      setQuestionaires(res.data.questionaire.reverse());
     })();
   }, []);
 
