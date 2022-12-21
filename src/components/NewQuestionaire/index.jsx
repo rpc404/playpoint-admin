@@ -29,10 +29,15 @@ export default function NewQuestionaire() {
     questionaires: { questions: ["", "", "", ""], points: ["", "", "", ""] },
   });
 
-  const [format, setFormat] = React.useState();
-  const params = useLocation();
-  const ref = useRef(null)
+  const [formatOne, setFormatOne] = React.useState();
+  const [formatTwo, setFormatTwo] = React.useState();
+  const [formatThree, setFormatThree] = React.useState();
+  const [formatFour, setFormatFour] = React.useState();
+
+
   
+  const params = useLocation();
+
 
   const handleQuestionInput = (e, v) => {
     switch (e) {
@@ -72,7 +77,8 @@ export default function NewQuestionaire() {
     }
   };
 
-  const handleResetInputs = () => {useLousecation
+  const handleResetInputs = () => {
+
     setFormData({
       bidPrice: 5,
       questionType: 3,
@@ -126,7 +132,6 @@ export default function NewQuestionaire() {
     handleResetInputs();
     toast("Questionaire created successfully!");
   };
-
 
   return (
     <div className="newQuestionaire__container">
@@ -197,90 +202,192 @@ export default function NewQuestionaire() {
           <MenuItem value="unlimited">Unlimited</MenuItem>
         </Select>
       </FormControl>
-      {Array(formData.questionType).fill(1).map((data, index) => {
-            return (
-              <>
-              <div className="formQuestion__container" key={index}>
-                <input
-                  type="text"
-                  value={
-                    index === 0
-                      ? questionOne
-                      : index === 1
-                      ? questionTwo
-                      : questionThree
-                  }
-                  placeholder="Question"
-                  label={`Question ${index + 1}`}
-                  onChange={(e) => handleQuestionInput(index, e.target.value)}
-                />
-                <input
-                  type="text"
-                  value={
-                    index === 0
-                      ? pointsOne
-                      : index === 1
-                      ? pointsTwo
-                      : pointsThree
-                  }
-                  placeholder="points"
-                  onChange={(e) => handlePointsInput(index, e.target.value)}
-                />
-              </div>
-              {/* <select name="" id="" onChange={(e)=>setFormat(e.target.value+""+index+1)}>
-                <option>Choose Answer Format</option>
-                <option value="1">1 of 2</option>
-                <option value="2">1 of 3</option>
-                <option value="3">Scores of 2</option>
-                <option value="4">Number</option>
-              </select> */}
-                {/* {
-                  format=="101" && 
-                  <div ref={ref}>
-                    <p>Enter two options seprated by comma</p>
-                    <input type={"text"} />
-                  </div>
-                } */}
-              </>
-
-            );
-          })
-        // : ["", "", "", ""].map((data, index) => {
-        //     return (
-        //       <div className="formQuestion__container" key={index}>
-        //         <input
-        //           type="text"
-        //           placeholder="Question"
-        //           value={
-        //             index === 0
-        //               ? questionOne
-        //               : index === 1
-        //               ? questionTwo
-        //               : index === 2
-        //               ? questionThree
-        //               : questionFour
-        //           }
-        //           label={`Question ${index + 1}`}
-        //           onChange={(e) => handleQuestionInput(index, e.target.value)}
-        //         />
-        //         <input
-        //           type="text"
-        //           value={
-        //             index === 0
-        //               ? pointsOne
-        //               : index === 1
-        //               ? pointsTwo
-        //               : index === 2
-        //               ? pointsThree
-        //               : pointsFour
-        //           }
-        //           placeholder="points"
-        //           onChange={(e) => handlePointsInput(index, e.target.value)}
-        //         />
-        //       </div>
-        //     );
-        //   })
-          }
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionOne}
+          placeholder="Question"
+          label={`Question ${1}`}
+          onChange={(e) => handleQuestionInput(0, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsOne}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(0, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatOne(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+        {
+          formatOne==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatOne==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+         {
+          formatOne==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatOne==4 && <><p>Enter Max Number</p>
+          <input type={"number"} />
+          </>
+        }
+        
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionTwo}
+          placeholder="Question"
+          label={`Question ${2}`}
+          onChange={(e) => handleQuestionInput(1, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsTwo}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(1, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatTwo(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+        {
+          formatTwo==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatTwo==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+         {
+          formatTwo==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatTwo==4 && <><p>Enter Max Number</p>
+          <input type={"number"} />
+          </>
+        }
+        
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionThree}
+          placeholder="Question"
+          label={`Question ${3}`}
+          onChange={(e) => handleQuestionInput(2, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsThree}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(2, e.target.value)}
+        />
+      </div>
+      <select name="" id="">
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+      {
+          formatThree==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatThree==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+         {
+          formatThree==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatThree==4 && <><p>Enter Max Number</p>
+          <input type={"number"} />
+          </>
+        }
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionFour}
+          placeholder="Question"
+          label={`Question ${1}`}
+          onChange={(e) => handleQuestionInput(3, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsFour}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(3, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatFour(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+      {
+          formatFour==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatFour==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+         {
+          formatFour==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} />
+          </>
+        }
+        {
+          formatFour==4 && <><p>Enter Max Number</p>
+          <input type={"number"} />
+          </>
+        }
+      </div>
+      </>
       <Button
         className="submitBtn"
         onClick={(e) => handleQuestionaireSubmit(e)}
