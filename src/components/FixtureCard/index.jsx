@@ -179,6 +179,20 @@ const FixtureCard = ({ fixture, handleFixtureDelete }) => {
           <i className="ri-message-3-line"></i> Questionaire
         </Button>
         <Button
+          onClick={() =>
+            navigate(`/questionaires/new`, {
+              state: {
+                fixtureId: fixture?._id,
+                awayTeam:fixture?.AwayTeam,
+                homeTeam:fixture?.HomeTeam
+              },
+            })
+          }
+          className="editBtn"
+        >
+          <i className="ri-message-3-line"></i> Add Questionaire
+        </Button>
+        <Button
           className="deleteBtn"
           onClick={() => handleFixtureDelete(fixture._id)}
         >

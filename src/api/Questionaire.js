@@ -28,9 +28,8 @@ export const newQuestionaire = async (data) => {
 
 export const deleteQuestionaire = async (data) => {
   await axios.delete(
-    import.meta.env.VITE_API_URI + `api/v1/delete-questionaire/${data}`,
-    {
-      headers: { authorization: "Admin-v1_playpoint_admin" },
+    import.meta.env.VITE_API_URI + `api/v1/delete-questionaire/${data}`, {
+      headers:{ authorization: "Admin-v1_playpoint_admin"}
     }
   );
 };

@@ -6,7 +6,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import { newQuestionaire } from "../../api/Questionaire";
 import { useLocation } from "react-router-dom";
@@ -28,8 +28,11 @@ export default function NewQuestionaire() {
     poolType: "duo",
     questionaires: { questions: ["", "", "", ""], points: ["", "", "", ""] },
   });
+
+  const [format, setFormat] = React.useState();
   const params = useLocation();
-  console.log(params);
+  const ref = useRef(null)
+  
 
   const handleQuestionInput = (e, v) => {
     switch (e) {
@@ -69,7 +72,7 @@ export default function NewQuestionaire() {
     }
   };
 
-  const handleResetInputs = () => {
+  const handleResetInputs = () => {useLousecation
     setFormData({
       bidPrice: 5,
       questionType: 3,
@@ -123,6 +126,7 @@ export default function NewQuestionaire() {
     handleResetInputs();
     toast("Questionaire created successfully!");
   };
+
 
   return (
     <div className="newQuestionaire__container">
@@ -193,9 +197,9 @@ export default function NewQuestionaire() {
           <MenuItem value="unlimited">Unlimited</MenuItem>
         </Select>
       </FormControl>
-      {formData.questionType === 3
-        ? ["", "", ""].map((data, index) => {
+      {Array(formData.questionType).fill(1).map((data, index) => {
             return (
+              <>
               <div className="formQuestion__container" key={index}>
                 <input
                   type="text"
@@ -223,43 +227,60 @@ export default function NewQuestionaire() {
                   onChange={(e) => handlePointsInput(index, e.target.value)}
                 />
               </div>
+              {/* <select name="" id="" onChange={(e)=>setFormat(e.target.value+""+index+1)}>
+                <option>Choose Answer Format</option>
+                <option value="1">1 of 2</option>
+                <option value="2">1 of 3</option>
+                <option value="3">Scores of 2</option>
+                <option value="4">Number</option>
+              </select> */}
+                {/* {
+                  format=="101" && 
+                  <div ref={ref}>
+                    <p>Enter two options seprated by comma</p>
+                    <input type={"text"} />
+                  </div>
+                } */}
+              </>
+
             );
           })
-        : ["", "", "", ""].map((data, index) => {
-            return (
-              <div className="formQuestion__container" key={index}>
-                <input
-                  type="text"
-                  placeholder="Question"
-                  value={
-                    index === 0
-                      ? questionOne
-                      : index === 1
-                      ? questionTwo
-                      : index === 2
-                      ? questionThree
-                      : questionFour
-                  }
-                  label={`Question ${index + 1}`}
-                  onChange={(e) => handleQuestionInput(index, e.target.value)}
-                />
-                <input
-                  type="text"
-                  value={
-                    index === 0
-                      ? pointsOne
-                      : index === 1
-                      ? pointsTwo
-                      : index === 2
-                      ? pointsThree
-                      : pointsFour
-                  }
-                  placeholder="points"
-                  onChange={(e) => handlePointsInput(index, e.target.value)}
-                />
-              </div>
-            );
-          })}
+        // : ["", "", "", ""].map((data, index) => {
+        //     return (
+        //       <div className="formQuestion__container" key={index}>
+        //         <input
+        //           type="text"
+        //           placeholder="Question"
+        //           value={
+        //             index === 0
+        //               ? questionOne
+        //               : index === 1
+        //               ? questionTwo
+        //               : index === 2
+        //               ? questionThree
+        //               : questionFour
+        //           }
+        //           label={`Question ${index + 1}`}
+        //           onChange={(e) => handleQuestionInput(index, e.target.value)}
+        //         />
+        //         <input
+        //           type="text"
+        //           value={
+        //             index === 0
+        //               ? pointsOne
+        //               : index === 1
+        //               ? pointsTwo
+        //               : index === 2
+        //               ? pointsThree
+        //               : pointsFour
+        //           }
+        //           placeholder="points"
+        //           onChange={(e) => handlePointsInput(index, e.target.value)}
+        //         />
+        //       </div>
+        //     );
+        //   })
+          }
       <Button
         className="submitBtn"
         onClick={(e) => handleQuestionaireSubmit(e)}
