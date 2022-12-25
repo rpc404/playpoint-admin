@@ -1,6 +1,6 @@
 import React from "react";
 import { getStats } from "../../api/AdminStats";
-import "../../dest/pages/Home/styles/style.css"
+import "./styles/style.css"
 
 
 export default function Home() {

@@ -2,7 +2,7 @@ import { Button, Typography } from "@mui/material";
 import React from "react";
 import ResultsList from "../../mocks/Results.json";
 import Fuse from "fuse.js";
-import "../../dest/pages/Results/styles/style.css";
+import "./styles/style.css"
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteResults, getResults } from "../../api/Results";
 import { toast } from "react-toastify";

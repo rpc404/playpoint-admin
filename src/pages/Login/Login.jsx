@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleRPCWalletLogin } from "../../api/Login";
-import "../../dest/pages/Login/styles/style.css";
+import "./styles/style.css"
 
 import metamask from "../../images/metamask.png";
 

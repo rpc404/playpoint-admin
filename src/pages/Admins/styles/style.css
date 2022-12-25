@@ -66,7 +66,6 @@
   align-items: center;
   flex-direction: column;
   gap: 50px;
-  width: 50vw;
   overflow-y: auto;
   position: relative;
 }
