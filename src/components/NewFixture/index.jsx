@@ -11,7 +11,8 @@ import React from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import "./styles/style.css";
+// import "./styles/style.css";
+import "../../dest/components/NewFixture/styles/style.css"
 import { getMarketplaces } from "../../api/Marketplace";
 import { newFixture } from "../../api/Fixture";
 import { toast } from "react-toastify";

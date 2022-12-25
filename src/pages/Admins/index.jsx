@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { addAdmin, allAdmins, removeAdmin } from "../../api/AdminStats";
-import "./styles/style.css";
+import "../../dest/pages/Admins/styles/style.css"
 import {
   TextField,
   Select,

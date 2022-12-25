@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/style.css";
+import "../../dest/components/Navbar/styles/style.css"
 
 export default function Navbar() {
   const [activeTab, setActiveTab] = React.useState("h");

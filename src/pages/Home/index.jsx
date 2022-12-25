@@ -1,6 +1,7 @@
 import React from "react";
 import { getStats } from "../../api/AdminStats";
-import "./styles/style.css";
+import "../../dest/pages/Home/styles/style.css"
+
 
 export default function Home() {
   const [stats, setStats] = React.useState({

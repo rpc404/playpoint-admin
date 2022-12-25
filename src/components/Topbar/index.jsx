@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/style.css'
+import "../../dest/components/Topbar/styles/style.css"
 
 export default function Topbar() {
   return (

@@ -1,5 +1,7 @@
 .admin__container {
   display: flex;
+  // overflow-y: auto;
+  overflow: hidden;
   .form__container {
     display: flex;
     justify-content: center;
@@ -67,7 +69,9 @@
     flex-direction: column;
     gap: 50px;
     width: 50vw;
+    overflow-y: auto;
     position: relative;
+
     &::before {
       content: "";
       position: absolute;

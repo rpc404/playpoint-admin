@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 // import QuestionairesList from "../../mocks/Questionaires.json";
-import "./styles/style.css";
+import "../../dest/pages/Questionaires/styles/style.css"
 import Fuse from "fuse.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteQuestionaire, getQuestionaires, getQuestionairesByFixture } from "../../api/Questionaire";

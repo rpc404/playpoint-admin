@@ -3,7 +3,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { newResults } from "../../api/Results";
 import { useLocation } from "react-router-dom";
-import "./styles/style.css";
+import "../../dest/components/NewResult/styles/style.css"
 import pusherJs from "pusher-js";
 
 export default function NewResult() {
