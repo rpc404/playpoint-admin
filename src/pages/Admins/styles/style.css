@@ -7,7 +7,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px 3vw;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
 }
 .container .admin_nav img {
   height: 50px;
@@ -17,9 +17,14 @@
 }
 .container .admin__container {
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 1fr 5fr;
   overflow: hidden;
   height: 100%;
+}
+@media screen and (min-width: 1441px) {
+  .container .admin__container {
+    grid-template-columns: 1fr 9fr;
+  }
 }
 .container .admin__container .form__container {
   display: flex;
@@ -40,9 +45,14 @@
   padding: 2em 1.3em;
   border-radius: 5px;
   gap: 20px;
-  width: 25vw;
+  width: 50vw;
   background-color: #fff;
   z-index: 2;
+}
+@media screen and (min-width: 1025px) {
+  .container .admin__container .form__container .form {
+    width: 25vw;
+  }
 }
 .container .admin__container .form__container .form label {
   color: rgba(0, 0, 0, 0.6);
@@ -83,8 +93,17 @@
 .container .admin__container .all_admins .admins {
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
+}
+@media screen and (min-width: 1025px) {
+  .container .admin__container .all_admins .admins {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1441px) {
+  .container .admin__container .all_admins .admins {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .container .admin__container .all_admins .admins .box {
   display: flex;

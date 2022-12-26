@@ -6,7 +6,7 @@
     align-items: center;
     gap: 10px;
     padding: 10px 3vw;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #e0e0e0;
     img {
       height: 50px;
       width: 50px;
@@ -15,7 +15,10 @@
   }
   .admin__container {
     display: grid;
-    grid-template-columns: 1fr 9fr;
+    @media screen and (min-width: 1441px) {
+      grid-template-columns: 1fr 9fr;
+    }
+    grid-template-columns: 1fr 5fr;
     overflow: hidden;
     height: 100%;
     .form__container {
@@ -37,7 +40,11 @@
         padding: 2em 1.3em;
         border-radius: 5px;
         gap: 20px;
-        width: 25vw;
+
+        @media screen and (min-width: 1025px) {
+          width: 25vw;
+        }
+        width: 50vw;
         background-color: #fff;
         z-index: 2;
         label {
@@ -82,7 +89,14 @@
       .admins {
         overflow-y: auto;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        
+        @media screen and (min-width: 1025px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media screen and (min-width: 1441px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
         gap: 25px;
 
         .box {
