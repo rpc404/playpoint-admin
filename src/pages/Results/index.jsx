@@ -2,18 +2,18 @@ import { Button, Typography } from "@mui/material";
 import React from "react";
 import ResultsList from "../../mocks/Results.json";
 import Fuse from "fuse.js";
-import "./styles/style.css";
+import "./styles/style.css"
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteResults, getResults } from "../../api/Results";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 
 export default function Results() {
-  const {qid} = useParams()
+  const { qid } = useParams();
   const [results, setResults] = React.useState([]);
   const [filteredResults, setFilteredResults] = React.useState([]);
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const filter = (e) => {
     const options = {
@@ -28,9 +28,7 @@ export default function Results() {
 
   const handleResultDelete = async (_id) => {
     toast("Result added to delete queue!");
-    setResults(
-      results.filter((i) => i._id !== _id)
-    );
+    setResults(results.filter((i) => i._id !== _id));
     await deleteResults(_id);
     toast("Result deleted successfully!");
   };
@@ -73,10 +71,16 @@ export default function Results() {
                     })}
                   </ul>
                   <div className="actions">
-                    <Button onClick={() => navigate("edit")} className="editBtn">
+                    <Button
+                      onClick={() => navigate("edit")}
+                      className="editBtn"
+                    >
                       <i className="ri-settings-line"></i> Edit
                     </Button>
-                    <Button className="deleteBtn" onClick={() => handleResultDelete(data.item._id)}>
+                    <Button
+                      className="deleteBtn"
+                      onClick={() => handleResultDelete(data.item._id)}
+                    >
                       <i className="ri-delete-bin-5-line"></i> Delete
                     </Button>
                   </div>
@@ -102,10 +106,16 @@ export default function Results() {
                     })}
                   </ul>
                   <div className="actions">
-                    <Button onClick={() => navigate("edit")} className="editBtn">
+                    <Button
+                      onClick={() => navigate("edit")}
+                      className="editBtn"
+                    >
                       <i className="ri-settings-line"></i> Edit
                     </Button>
-                    <Button className="deleteBtn" onClick={() => handleResultDelete(data._id)}>
+                    <Button
+                      className="deleteBtn"
+                      onClick={() => handleResultDelete(data._id)}
+                    >
                       <i className="ri-delete-bin-5-line"></i> Delete
                     </Button>
                   </div>

@@ -10,7 +10,7 @@ import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import { newQuestionaire } from "../../api/Questionaire";
 import { useLocation } from "react-router-dom";
-import "./styles/style.css";
+import "./styles/style.css"
 
 export default function NewQuestionaire() {
   const [loading, setLoading] = React.useState(false);

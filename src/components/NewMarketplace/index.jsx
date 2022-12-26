@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
-import "./styles/style.css";
+import "./styles/style.css"
 import { toast } from "react-toastify";
 import { newMarketplaces } from "../../api/Marketplace";
 

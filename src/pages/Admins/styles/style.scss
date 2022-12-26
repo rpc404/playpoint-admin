@@ -1,149 +1,169 @@
-.admin__container {
-  display: flex;
-  .form__container {
+.container {
+  height: calc(100vh - 30px);
+  overflow: hidden;
+  .admin_nav {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50vw;
-    height: 97.3vh;
-    position: relative;
-    background: url("https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba($color: #000000, $alpha: 0.8);
-    }
-    .form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid rgb(154, 154, 154);
-      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-      padding: 2em 1.3em;
-      border-radius: 5px;
-      gap: 20px;
-      width: 25vw;
-      background-color: #fff;
-      z-index: 2;
-      label {
-        color: #0009;
-      }
-      h3 {
-        text-align: center;
-        margin: 0.5em 0;
-      }
-      button {
-        padding: 0.8em;
-        text-transform: capitalize;
-        font-size: 1.1em;
-        cursor: pointer;
-        border-radius: 3px;
-        border: none;
-        background-color: #4C82FB;
-        text-shadow: 0 1px ;
-        border: 1px solid rgb(128, 128, 128);
-        transition: 0.2s;
-        color: #fff;
-
-        &:active {
-          scale: 0.95;
-        }
-      }
+    gap: 10px;
+    padding: 10px 3vw;
+    border-bottom: 1px solid #e0e0e0;
+    img {
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
     }
   }
-  .all_admins {
-    display: flex;
-    height: 97vh;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    width: 50vw;
-    position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      background-color: rgba($color: rgb(197, 197, 197), $alpha: 0.8);
+  .admin__container {
+    display: grid;
+    @media screen and (min-width: 1441px) {
+      grid-template-columns: 1fr 9fr;
     }
-    h2 {
-      text-decoration: underline;
-      padding: 0.5em;
-      z-index: 1;
-    }
-    .admins {
+    grid-template-columns: 1fr 5fr;
+    overflow: hidden;
+    height: 100%;
+    .form__container {
       display: flex;
-      flex-direction: column;
-      gap: 25px;
-
-      .box {
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 80vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      .form {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        padding: 1.1em;
-        box-shadow: 0px 10px 21px 5px rgb(0 0 0 / 10%);
+        justify-content: center;
+        border: 1px solid rgb(154, 154, 154);
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+          rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        padding: 2em 1.3em;
         border-radius: 5px;
-        background-color: #fff;
-        color: #5a5a5a;
-        transition: 0.5s ease;
-        z-index: 2;
-        &:hover {
-          scale: 1.05;
-          cursor: pointer;
+        gap: 20px;
+
+        @media screen and (min-width: 1025px) {
+          width: 25vw;
         }
-        p {
-          position: relative;
-          &:nth-of-type(2) {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            i {
-              color: rgb(51, 48, 155);
-              &:nth-of-type(2) {
-                cursor: pointer;
+        width: 50vw;
+        background-color: #fff;
+        z-index: 2;
+        label {
+          color: #0009;
+        }
+        h3 {
+          text-align: center;
+          margin: 0.5em 0;
+        }
+        button {
+          padding: 0.8em;
+          text-transform: capitalize;
+          font-size: 1.1em;
+          cursor: pointer;
+          border-radius: 3px;
+          border: none;
+          background-color: #4c82fb;
+          text-shadow: 0 1px;
+          border: 1px solid rgb(128, 128, 128);
+          transition: 0.2s;
+          color: #fff;
+
+          &:active {
+            scale: 0.95;
+          }
+        }
+      }
+    }
+    .all_admins {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 50px;
+      height: 80vh;
+
+      h2 {
+        text-decoration: underline;
+        padding: 0.5em;
+        z-index: 1;
+      }
+      .admins {
+        overflow-y: auto;
+        display: grid;
+        
+        @media screen and (min-width: 1025px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media screen and (min-width: 1441px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        gap: 25px;
+
+        .box {
+          display: flex;
+          flex-flow: column;
+          flex-direction: column;
+          gap: 10px;
+          padding: 1.1em;
+          box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+            rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+          border-radius: 5px;
+          background-color: rgba(255, 255, 255, 0.793);
+          color: #5a5a5a;
+          transition: 0.8s ease;
+          z-index: 2;
+
+          p {
+            position: relative;
+            &:nth-of-type(2) {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              i {
+                color: rgb(51, 48, 155);
+                &:nth-of-type(2) {
+                  cursor: pointer;
+                }
               }
             }
           }
-        }
-        .button__container {
-          border: 1px solid rgb(150, 150, 150);
-          width: fit-content;
-          padding: 0.3em;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          background-color: #8d3535;
-          border-radius: 3px;
-          transition: 0.2s ease;
-          &:active {
-            scale: 0.9;
-          }
-          button {
+          .button__container {
+            border: 1px solid rgb(150, 150, 150);
             width: fit-content;
-            padding: 0.5em;
+            padding: 0.3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            border: none;
-            background-color: transparent;
-            color: #fff;
-          }
-          i {
-            font-size: 1.1em;
-            color: #fff;
+            background-color: #8d3535;
+            border-radius: 3px;
+            transition: 0.2s ease;
+            &:active {
+              scale: 0.9;
+            }
+            button {
+              width: fit-content;
+              padding: 0.5em;
+              cursor: pointer;
+              border: none;
+              background-color: transparent;
+              color: #fff;
+            }
+            i {
+              font-size: 1.1em;
+              color: #fff;
+            }
           }
         }
       }
     }
   }
+}
+
+.MuiBox-root {
+  padding: 0 !important;
+}
+
+#vertical-tabpanel-1 {
+  background-color: rgba($color: #f3f3f3, $alpha: 1);
 }

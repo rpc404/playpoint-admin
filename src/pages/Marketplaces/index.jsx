@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
-import "./styles/style.css";
+import "./styles/style.css"
 import Fuse from "fuse.js";
 import { useNavigate } from "react-router-dom";
 import {
