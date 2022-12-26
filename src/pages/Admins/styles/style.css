@@ -1,29 +1,37 @@
-.admin__container {
-  display: flex;
+.container {
+  height: calc(100vh - 30px);
   overflow: hidden;
 }
-.admin__container .form__container {
+.container .admin_nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 3vw;
+  border-bottom: 1px solid #E0E0E0;
+}
+.container .admin_nav img {
+  height: 50px;
+  width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.container .admin__container {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  overflow: hidden;
+  height: 100%;
+}
+.container .admin__container .form__container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50vw;
-  height: 97.3vh;
   position: relative;
-  background: url("https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.admin__container .form__container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.admin__container .form__container .form {
+.container .admin__container .form__container .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,89 +44,76 @@
   background-color: #fff;
   z-index: 2;
 }
-.admin__container .form__container .form label {
+.container .admin__container .form__container .form label {
   color: rgba(0, 0, 0, 0.6);
 }
-.admin__container .form__container .form h3 {
+.container .admin__container .form__container .form h3 {
   text-align: center;
   margin: 0.5em 0;
 }
-.admin__container .form__container .form button {
+.container .admin__container .form__container .form button {
   padding: 0.8em;
   text-transform: capitalize;
   font-size: 1.1em;
   cursor: pointer;
   border-radius: 3px;
   border: none;
-  background-color: #4C82FB;
+  background-color: #4c82fb;
   text-shadow: 0 1px;
   border: 1px solid rgb(128, 128, 128);
   transition: 0.2s;
   color: #fff;
 }
-.admin__container .form__container .form button:active {
+.container .admin__container .form__container .form button:active {
   scale: 0.95;
 }
-.admin__container .all_admins {
+.container .admin__container .all_admins {
   display: flex;
-  height: 97vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 50px;
-  overflow-y: auto;
-  position: relative;
+  height: 80vh;
 }
-.admin__container .all_admins::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: rgba(197, 197, 197, 0.8);
-}
-.admin__container .all_admins h2 {
+.container .admin__container .all_admins h2 {
   text-decoration: underline;
   padding: 0.5em;
   z-index: 1;
 }
-.admin__container .all_admins .admins {
-  display: flex;
-  flex-direction: column;
+.container .admin__container .all_admins .admins {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
-.admin__container .all_admins .admins .box {
+.container .admin__container .all_admins .admins .box {
   display: flex;
+  flex-flow: column;
   flex-direction: column;
   gap: 10px;
   padding: 1.1em;
-  box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.793);
   color: #5a5a5a;
-  transition: 0.5s ease;
+  transition: 0.8s ease;
   z-index: 2;
 }
-.admin__container .all_admins .admins .box:hover {
-  scale: 1.05;
-  cursor: pointer;
-}
-.admin__container .all_admins .admins .box p {
+.container .admin__container .all_admins .admins .box p {
   position: relative;
 }
-.admin__container .all_admins .admins .box p:nth-of-type(2) {
+.container .admin__container .all_admins .admins .box p:nth-of-type(2) {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.admin__container .all_admins .admins .box p:nth-of-type(2) i {
+.container .admin__container .all_admins .admins .box p:nth-of-type(2) i {
   color: rgb(51, 48, 155);
 }
-.admin__container .all_admins .admins .box p:nth-of-type(2) i:nth-of-type(2) {
+.container .admin__container .all_admins .admins .box p:nth-of-type(2) i:nth-of-type(2) {
   cursor: pointer;
 }
-.admin__container .all_admins .admins .box .button__container {
+.container .admin__container .all_admins .admins .box .button__container {
   border: 1px solid rgb(150, 150, 150);
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -132,10 +127,10 @@
   border-radius: 3px;
   transition: 0.2s ease;
 }
-.admin__container .all_admins .admins .box .button__container:active {
+.container .admin__container .all_admins .admins .box .button__container:active {
   scale: 0.9;
 }
-.admin__container .all_admins .admins .box .button__container button {
+.container .admin__container .all_admins .admins .box .button__container button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -145,7 +140,15 @@
   background-color: transparent;
   color: #fff;
 }
-.admin__container .all_admins .admins .box .button__container i {
+.container .admin__container .all_admins .admins .box .button__container i {
   font-size: 1.1em;
   color: #fff;
+}
+
+.MuiBox-root {
+  padding: 0 !important;
+}
+
+#vertical-tabpanel-1 {
+  background-color: #f3f3f3;
 }/*# sourceMappingURL=style.css.map */
