@@ -33,6 +33,10 @@ export default function NewQuestionaire() {
   const [formatTwo, setFormatTwo] = React.useState();
   const [formatThree, setFormatThree] = React.useState();
   const [formatFour, setFormatFour] = React.useState();
+  const [formatOneProp, setFormatOneProp] = React.useState();
+  const [formatTwoProp, setFormatTwoProp] = React.useState();
+  const [formatThreeProp, setFormatThreeProp] = React.useState();
+  const [formatFourProp, setFormatFourProp] = React.useState();
 
 
   
@@ -97,34 +101,33 @@ export default function NewQuestionaire() {
     setPointsFour("");
   };
 
+  const answerPreset = {
+    1:"radio",
+    2:"radio",
+    3:"scoreof2",
+    4:"nummber"
+  }
+
   const handleQuestionaireSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     const { bidPrice, questionType, poolType } = formData;
-    if (questionType === 3) {
+    if (questionType === 3 || questionType === 4) {
       const data = {
         fixtureId: params?.state?.fixtureId,
-        bidPrice,
-        questionType,
-        poolType,
-        questionaires: {
-          questions: [questionOne, questionTwo, questionThree],
-          points: [pointsOne, pointsTwo, pointsThree],
-        },
-      };
-      await newQuestionaire(data);
-    } else {
-      const data = {
-        fixtureId: params?.state?.fixtureId,
+        marketplaceSlug:params?.state?.slug,
         bidPrice,
         questionType,
         poolType,
         questionaires: {
           questions: [questionOne, questionTwo, questionThree, questionFour],
           points: [pointsOne, pointsTwo, pointsThree, pointsFour],
+          answers:[answerPreset[formatOne]+"@"+formatOneProp, answerPreset[formatTwo]+"@"+formatTwoProp,answerPreset[formatThree]+"@"+formatThreeProp,answerPreset[formatFour]+"@"+formatFourProp ]
         },
       };
-
+      // console.log(data);
+      // return;
       await newQuestionaire(data);
     }
 
@@ -228,22 +231,22 @@ export default function NewQuestionaire() {
       <div>
         {
           formatOne==1 && <><p>Enter two options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
           </>
         }
         {
           formatOne==2 && <><p>Enter three options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
           </>
         }
          {
           formatOne==3 && <><p>Enter two teams seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
           </>
         }
         {
           formatOne==4 && <><p>Enter Max Number</p>
-          <input type={"number"} />
+          <input type={"number"} onChange={e=>setFormatOneProp(e.target.value)} />
           </>
         }
         
@@ -275,22 +278,22 @@ export default function NewQuestionaire() {
       <div>
         {
           formatTwo==1 && <><p>Enter two options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
           </>
         }
         {
           formatTwo==2 && <><p>Enter three options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
           </>
         }
          {
           formatTwo==3 && <><p>Enter two teams seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
           </>
         }
         {
           formatTwo==4 && <><p>Enter Max Number</p>
-          <input type={"number"} />
+          <input type={"number"} onChange={e=>setFormatTwoProp(e.target.value)} />
           </>
         }
         
@@ -312,7 +315,7 @@ export default function NewQuestionaire() {
           onChange={(e) => handlePointsInput(2, e.target.value)}
         />
       </div>
-      <select name="" id="">
+      <select onChange={e=>setFormatThree(e.target.value)}>
         <option>Choose Answer Format</option>
         <option value="1">1 of 2</option>
         <option value="2">1 of 3</option>
@@ -322,22 +325,22 @@ export default function NewQuestionaire() {
       <div>
       {
           formatThree==1 && <><p>Enter two options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
           </>
         }
         {
           formatThree==2 && <><p>Enter three options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
           </>
         }
          {
           formatThree==3 && <><p>Enter two teams seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
           </>
         }
         {
           formatThree==4 && <><p>Enter Max Number</p>
-          <input type={"number"} />
+          <input type={"number"} onChange={e=>setFormatThreeProp(e.target.value)} />
           </>
         }
       </div>
@@ -368,22 +371,22 @@ export default function NewQuestionaire() {
       <div>
       {
           formatFour==1 && <><p>Enter two options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
           </>
         }
         {
           formatFour==2 && <><p>Enter three options seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
           </>
         }
          {
           formatFour==3 && <><p>Enter two teams seprated by comma</p>
-          <input type={"text"} />
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
           </>
         }
         {
           formatFour==4 && <><p>Enter Max Number</p>
-          <input type={"number"} />
+          <input type={"number"} onChange={e=>setFormatFourProp(e.target.value)} />
           </>
         }
       </div>

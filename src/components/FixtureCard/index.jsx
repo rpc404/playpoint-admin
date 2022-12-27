@@ -184,7 +184,8 @@ const FixtureCard = ({ fixture, handleFixtureDelete }) => {
               state: {
                 fixtureId: fixture?._id,
                 awayTeam:fixture?.AwayTeam,
-                homeTeam:fixture?.HomeTeam
+                homeTeam:fixture?.HomeTeam,
+                slug:fixture?.marketplaceSlug
               },
             })
           }

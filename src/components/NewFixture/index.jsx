@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "./styles/style.css";
 import { getMarketplaces } from "../../api/Marketplace";
 import { newFixture } from "../../api/Fixture";
@@ -236,11 +236,12 @@ export default function NewFixture() {
         </div>
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            disableFuture
+          <DateTimePicker
+            disablePast
+            
             label="Responsive"
             openTo="year"
-            views={["year", "month", "day"]}
+            views={["year", "month", "day","hours","minutes"]}
             value={newFixtureItem.DateUtc}
             onChange={(newValue) => {
               setNewFixtureItem({
