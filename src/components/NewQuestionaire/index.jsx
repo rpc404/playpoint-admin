@@ -29,10 +29,19 @@ export default function NewQuestionaire() {
     questionaires: { questions: ["", "", "", ""], points: ["", "", "", ""] },
   });
 
-  const [format, setFormat] = React.useState();
-  const params = useLocation();
-  const ref = useRef(null)
+  const [formatOne, setFormatOne] = React.useState();
+  const [formatTwo, setFormatTwo] = React.useState();
+  const [formatThree, setFormatThree] = React.useState();
+  const [formatFour, setFormatFour] = React.useState();
+  const [formatOneProp, setFormatOneProp] = React.useState();
+  const [formatTwoProp, setFormatTwoProp] = React.useState();
+  const [formatThreeProp, setFormatThreeProp] = React.useState();
+  const [formatFourProp, setFormatFourProp] = React.useState();
+
+
   
+  const params = useLocation();
+
 
   const handleQuestionInput = (e, v) => {
     switch (e) {
@@ -72,7 +81,8 @@ export default function NewQuestionaire() {
     }
   };
 
-  const handleResetInputs = () => {useLousecation
+  const handleResetInputs = () => {
+
     setFormData({
       bidPrice: 5,
       questionType: 3,
@@ -91,34 +101,33 @@ export default function NewQuestionaire() {
     setPointsFour("");
   };
 
+  const answerPreset = {
+    1:"radio",
+    2:"radio",
+    3:"scoreof2",
+    4:"nummber"
+  }
+
   const handleQuestionaireSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     const { bidPrice, questionType, poolType } = formData;
-    if (questionType === 3) {
+    if (questionType === 3 || questionType === 4) {
       const data = {
         fixtureId: params?.state?.fixtureId,
-        bidPrice,
-        questionType,
-        poolType,
-        questionaires: {
-          questions: [questionOne, questionTwo, questionThree],
-          points: [pointsOne, pointsTwo, pointsThree],
-        },
-      };
-      await newQuestionaire(data);
-    } else {
-      const data = {
-        fixtureId: params?.state?.fixtureId,
+        marketplaceSlug:params?.state?.slug,
         bidPrice,
         questionType,
         poolType,
         questionaires: {
           questions: [questionOne, questionTwo, questionThree, questionFour],
           points: [pointsOne, pointsTwo, pointsThree, pointsFour],
+          answers:[answerPreset[formatOne]+"@"+formatOneProp, answerPreset[formatTwo]+"@"+formatTwoProp,answerPreset[formatThree]+"@"+formatThreeProp,answerPreset[formatFour]+"@"+formatFourProp ]
         },
       };
-
+      // console.log(data);
+      // return;
       await newQuestionaire(data);
     }
 
@@ -126,7 +135,6 @@ export default function NewQuestionaire() {
     handleResetInputs();
     toast("Questionaire created successfully!");
   };
-
 
   return (
     <div className="newQuestionaire__container">
@@ -197,90 +205,192 @@ export default function NewQuestionaire() {
           <MenuItem value="unlimited">Unlimited</MenuItem>
         </Select>
       </FormControl>
-      {Array(formData.questionType).fill(1).map((data, index) => {
-            return (
-              <>
-              <div className="formQuestion__container" key={index}>
-                <input
-                  type="text"
-                  value={
-                    index === 0
-                      ? questionOne
-                      : index === 1
-                      ? questionTwo
-                      : questionThree
-                  }
-                  placeholder="Question"
-                  label={`Question ${index + 1}`}
-                  onChange={(e) => handleQuestionInput(index, e.target.value)}
-                />
-                <input
-                  type="text"
-                  value={
-                    index === 0
-                      ? pointsOne
-                      : index === 1
-                      ? pointsTwo
-                      : pointsThree
-                  }
-                  placeholder="points"
-                  onChange={(e) => handlePointsInput(index, e.target.value)}
-                />
-              </div>
-              {/* <select name="" id="" onChange={(e)=>setFormat(e.target.value+""+index+1)}>
-                <option>Choose Answer Format</option>
-                <option value="1">1 of 2</option>
-                <option value="2">1 of 3</option>
-                <option value="3">Scores of 2</option>
-                <option value="4">Number</option>
-              </select> */}
-                {/* {
-                  format=="101" && 
-                  <div ref={ref}>
-                    <p>Enter two options seprated by comma</p>
-                    <input type={"text"} />
-                  </div>
-                } */}
-              </>
-
-            );
-          })
-        // : ["", "", "", ""].map((data, index) => {
-        //     return (
-        //       <div className="formQuestion__container" key={index}>
-        //         <input
-        //           type="text"
-        //           placeholder="Question"
-        //           value={
-        //             index === 0
-        //               ? questionOne
-        //               : index === 1
-        //               ? questionTwo
-        //               : index === 2
-        //               ? questionThree
-        //               : questionFour
-        //           }
-        //           label={`Question ${index + 1}`}
-        //           onChange={(e) => handleQuestionInput(index, e.target.value)}
-        //         />
-        //         <input
-        //           type="text"
-        //           value={
-        //             index === 0
-        //               ? pointsOne
-        //               : index === 1
-        //               ? pointsTwo
-        //               : index === 2
-        //               ? pointsThree
-        //               : pointsFour
-        //           }
-        //           placeholder="points"
-        //           onChange={(e) => handlePointsInput(index, e.target.value)}
-        //         />
-        //       </div>
-        //     );
-        //   })
-          }
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionOne}
+          placeholder="Question"
+          label={`Question ${1}`}
+          onChange={(e) => handleQuestionInput(0, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsOne}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(0, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatOne(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+        {
+          formatOne==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
+          </>
+        }
+        {
+          formatOne==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
+          </>
+        }
+         {
+          formatOne==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatOneProp(e.target.value)} />
+          </>
+        }
+        {
+          formatOne==4 && <><p>Enter Max Number</p>
+          <input type={"number"} onChange={e=>setFormatOneProp(e.target.value)} />
+          </>
+        }
+        
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionTwo}
+          placeholder="Question"
+          label={`Question ${2}`}
+          onChange={(e) => handleQuestionInput(1, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsTwo}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(1, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatTwo(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+        {
+          formatTwo==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
+          </>
+        }
+        {
+          formatTwo==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
+          </>
+        }
+         {
+          formatTwo==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatTwoProp(e.target.value)} />
+          </>
+        }
+        {
+          formatTwo==4 && <><p>Enter Max Number</p>
+          <input type={"number"} onChange={e=>setFormatTwoProp(e.target.value)} />
+          </>
+        }
+        
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionThree}
+          placeholder="Question"
+          label={`Question ${3}`}
+          onChange={(e) => handleQuestionInput(2, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsThree}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(2, e.target.value)}
+        />
+      </div>
+      <select onChange={e=>setFormatThree(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+      {
+          formatThree==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
+          </>
+        }
+        {
+          formatThree==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
+          </>
+        }
+         {
+          formatThree==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatThreeProp(e.target.value)} />
+          </>
+        }
+        {
+          formatThree==4 && <><p>Enter Max Number</p>
+          <input type={"number"} onChange={e=>setFormatThreeProp(e.target.value)} />
+          </>
+        }
+      </div>
+      </>
+      <>
+      <div className="formQuestion__container">
+        <input
+          type="text"
+          value={questionFour}
+          placeholder="Question"
+          label={`Question ${1}`}
+          onChange={(e) => handleQuestionInput(3, e.target.value)}
+        />
+        <input
+          type="text"
+          value={pointsFour}
+          placeholder="points"
+          onChange={(e) => handlePointsInput(3, e.target.value)}
+        />
+      </div>
+      <select name="" id="" onChange={e=>setFormatFour(e.target.value)}>
+        <option>Choose Answer Format</option>
+        <option value="1">1 of 2</option>
+        <option value="2">1 of 3</option>
+        <option value="3">Scores of 2</option>
+        <option value="4">Number</option>
+      </select>
+      <div>
+      {
+          formatFour==1 && <><p>Enter two options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
+          </>
+        }
+        {
+          formatFour==2 && <><p>Enter three options seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
+          </>
+        }
+         {
+          formatFour==3 && <><p>Enter two teams seprated by comma</p>
+          <input type={"text"} onChange={e=>setFormatFourProp(e.target.value)} />
+          </>
+        }
+        {
+          formatFour==4 && <><p>Enter Max Number</p>
+          <input type={"number"} onChange={e=>setFormatFourProp(e.target.value)} />
+          </>
+        }
+      </div>
+      </>
       <Button
         className="submitBtn"
         onClick={(e) => handleQuestionaireSubmit(e)}
