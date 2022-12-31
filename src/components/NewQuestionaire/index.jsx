@@ -105,7 +105,7 @@ export default function NewQuestionaire() {
     1:"radio",
     2:"radio",
     3:"scoreof2",
-    4:"nummber"
+    4:"number"
   }
 
   const handleQuestionaireSubmit = async (e) => {
