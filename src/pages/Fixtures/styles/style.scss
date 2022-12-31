@@ -11,9 +11,17 @@
         margin: 0 auto;
         margin-top: 20px;
         border: 1.5px solid #000a;
-        width: 30vw;
+        width: 90vw;
         padding: 5px 15px;
-    
+
+        @media screen and (min-width:426px) {
+          width: 50vw;
+        }
+
+        @media screen and (min-width:769px) {
+          width: 30vw;
+        }
+
         &:focus-within{
           border-color: #3498db;
         }
@@ -33,14 +41,20 @@
       .fixture__items {
         display: flex;
         flex-wrap: wrap;
+        @media screen and (max-width:425px) {
+          flex-direction: column;
+        }
         margin-top: 50px;
         padding: 0 5vw;
         gap: 3vw;
     
         .fixture__item {
-          max-width: 28vw;
-          cursor: pointer;
+          @media screen and (min-width:769px) {
+            max-width: 28vw;
+            
+          }
           min-width: 28vw;
+          cursor: pointer;
           flex-direction: column;
           box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
           padding: 15px;
@@ -62,6 +76,21 @@
     
             i {
               font-size: 22px;
+            }
+          }
+
+          // div {
+          //   @media screen and (max-width:425px) {
+          //     flex-direction: column;
+          //   }
+          // }
+          .fixture {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @media screen and (max-width:426px) {
+              flex-direction: column;
+              gap: 5px;
             }
           }
 
@@ -107,6 +136,10 @@
             border-top: 1px solid #0001;
             padding-top: 5px;
             margin-top: 5px;
+
+            @media screen and (max-width:425px) {
+              flex-direction: column;
+            }
     
             .MuiButton-root {
               padding: 0;
