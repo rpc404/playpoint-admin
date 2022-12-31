@@ -28,7 +28,6 @@ export default function Questionaires() {
     window.scrollTo(0, 0);
     (async () => {
       const res = await getQuestionairesByFixture(params.state.fixtureId);
-      console.log(res)
       setQuestionaires(res.data.questionaire.reverse());
     })();
   }, []);
@@ -39,6 +38,7 @@ export default function Questionaires() {
     await deleteQuestionaire(_id);
     toast("Marketplace deleted successfully!");
   };
+  {console.log(filteredQuestionaires)}
   return (
     <div className="questionaire__container">
       <h1 className="title">Active Questionaires</h1>
@@ -63,6 +63,7 @@ export default function Questionaires() {
 
         {filteredQuestionaires.length > 0
           ? filteredQuestionaires.map((data, index) => {
+            console.log(data)
               return (
                 <div className="questionaire__item" key={index}>
                   <img
@@ -76,9 +77,10 @@ export default function Questionaires() {
                   <div className="fixture">
                     {/* <b>Fixture</b>: {data?.item?.fixtureId} */}
                   </div>
-
+                 
                   <ul>
                     {data?.item?.questionaires.map((question, index) => {
+                   
                       return <li key={index}>{question}</li>;
                     })}
                   </ul>
@@ -89,12 +91,15 @@ export default function Questionaires() {
                     >
                       <i className="ri-settings-line"></i> Edit
                     </Button>
+                   
                     <Button
                       className="resultBtn"
                       onClick={() =>
                         navigate("/results/new", {
                           state: {
                             questionaireId: data?.item?._id,
+                            
+
                           },
                         })
                       }
@@ -112,7 +117,7 @@ export default function Questionaires() {
               );
             })
           : questionaires.map((data, index) => {
-            
+             
               return (
                 <div className="questionaire__item" key={index}>
                   <img
@@ -164,7 +169,7 @@ export default function Questionaires() {
                       onClick={() =>
                         navigate(`/results/new`, {
                           state: {
-                            questions: data?.questionaires.questions,
+                            questions: data?.questionaires,
                             qid: data?._id,
                           },
                         })
