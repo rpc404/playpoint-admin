@@ -1,5 +1,4 @@
 import React from "react";
-import CountryFlags from "../../mocks/CountryFlags.json";
 import { Button, Stack, styled, Switch, Typography } from "@mui/material";
 import { getAllPredictionsByFixture } from "../../api/Marketplace";
 import { updateFixtureStatus } from "../../api/Fixture";
@@ -7,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import clubFlags from "../../helpers/EPLFlags.json";
 import CarabaoClubFlags from "../../helpers/EFLFlags.json";
 import EPLFlags from "../../helpers/EPLFlags.json";
+import GetFlags from "../utils/GetFlags";
 
 const FixtureCard = ({ fixture, handleFixtureDelete }) => {
   console.log(fixture);
@@ -14,6 +14,8 @@ const FixtureCard = ({ fixture, handleFixtureDelete }) => {
     fixture?.status[0]?.status == "open" ? true : false
   );
   const navigate = useNavigate();
+
+  const { HomeTeamFlag, AwayTeamFlag } = GetFlags();
 
   const handleSwitch = async (e) => {
     setSV(!switchValue);
@@ -72,131 +74,7 @@ const FixtureCard = ({ fixture, handleFixtureDelete }) => {
     },
   }));
 
-  const HomeTeamFlag = (team) => {
-    if (fixture.marketplaceSlug === "English-Football-League397") {
-      return clubFlags.map((club, i) => {
-        if (club.name === team) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "Carabao-Cup237") {
-      return CarabaoClubFlags.map((club, i) => {
-        if (club.name === team) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "premiere-league") {
-      return EPLFlags.map((club, i) => {
-        if (
-          club.name.replace(" ", "").toLowerCase().trim() ===
-          team.replace(" ", "").toLowerCase().trim()
-        ) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "fifa-worldcup") {
-      return CountryFlags.map((country, i) => {
-        return (
-          (country.name === fixture.HomeTeam ||
-            (country.name === "United States" && fixture.AwayTeam === "USA") ||
-            (country.name === "South Korea" &&
-              fixture.AwayTeam === "Korea Republic")) && (
-            <img
-              src={country?.image}
-              alt={country.name}
-              key={i}
-              loading="lazy"
-              className="Away__Image"
-            />
-          )
-        );
-      });
-    }
-  };
 
-  const AwayTeamFlag = (team) => {
-    if (fixture.marketplaceSlug === "English-Football-League397") {
-      return clubFlags.map((club, i) => {
-        if (club.name === team) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "Carabao-Cup237") {
-      return CarabaoClubFlags.map((club, i) => {
-        if (club.name === team) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "premiere-league") {
-      return EPLFlags.map((club, i) => {
-        if (
-          club.name.replace(" ", "").toLowerCase().trim() ===
-          team.replace(" ", "").toLowerCase().trim()
-        ) {
-          return (
-            <img
-              src={club.image_url}
-              alt={club.name}
-              key={i}
-              className="home__Image"
-            />
-          );
-        }
-      });
-    } else if (fixture.marketplaceSlug === "fifa-worldcup") {
-      return CountryFlags.map((country, i) => {
-        return (
-          (country.name === fixture.AwayTeam ||
-            (country.name === "United States" && fixture.AwayTeam === "USA") ||
-            (country.name === "South Korea" &&
-              fixture.AwayTeam === "Korea Republic")) && (
-            <img
-              src={country?.image}
-              alt={country.name}
-              key={i}
-              loading="lazy"
-              className="Away__Image"
-            />
-          )
-        );
-      });
-    }
-  };
 
   return (
     <div className="fixture__item">
@@ -221,28 +99,11 @@ const FixtureCard = ({ fixture, handleFixtureDelete }) => {
       <div className="gameDetails">
         <span className="homeTeam">
           <p>{fixture.HomeTeam}</p>
-          {HomeTeamFlag(fixture.HomeTeam)}
+          {HomeTeamFlag(fixture)}
         </span>
         <span>VS</span>
         <span className="awayTeam">
-          {/* {CountryFlags.map((country, i) => {
-            return (
-              (country.name === fixture.AwayTeam ||
-                (country.name === "United States" &&
-                  fixture.AwayTeam === "USA") ||
-                (country.name === "South Korea" &&
-                  fixture.AwayTeam === "Korea Republic")) && (
-                <img
-                  src={country?.image}
-                  alt={country.name}
-                  key={i}
-                  loading="lazy"
-                  className="Away__Image"
-                />
-              )
-            );
-          })} */}
-          {AwayTeamFlag(fixture.AwayTeam)}
+          {AwayTeamFlag(fixture)}
           <p>{fixture?.AwayTeam}</p>
         </span>
       </div>
