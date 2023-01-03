@@ -11,8 +11,18 @@
   margin: 0 auto;
   margin-top: 20px;
   border: 1.5px solid rgba(0, 0, 0, 0.6666666667);
-  width: 30vw;
+  width: 90vw;
   padding: 5px 15px;
+}
+@media screen and (min-width: 426px) {
+  .fixture__container .search__container {
+    width: 50vw;
+  }
+}
+@media screen and (min-width: 769px) {
+  .fixture__container .search__container {
+    width: 30vw;
+  }
 }
 .fixture__container .search__container:focus-within {
   border-color: #3498db;
@@ -33,10 +43,14 @@
   padding: 0 5vw;
   gap: 3vw;
 }
+@media screen and (max-width: 425px) {
+  .fixture__container .fixture__items {
+    flex-direction: column;
+  }
+}
 .fixture__container .fixture__items .fixture__item {
-  max-width: 28vw;
-  cursor: pointer;
   min-width: 28vw;
+  cursor: pointer;
   flex-direction: column;
   box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
   padding: 15px;
@@ -45,6 +59,11 @@
   align-items: flex-start;
   transition: 0.3s all ease-in-out;
   color: #5a5a5a;
+}
+@media screen and (min-width: 769px) {
+  .fixture__container .fixture__items .fixture__item {
+    max-width: 28vw;
+  }
 }
 .fixture__container .fixture__items .fixture__item:hover {
   box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.0901960784);
@@ -57,6 +76,17 @@
 }
 .fixture__container .fixture__items .fixture__item.newFixture i {
   font-size: 22px;
+}
+.fixture__container .fixture__items .fixture__item .fixture {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 426px) {
+  .fixture__container .fixture__items .fixture__item .fixture {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 .fixture__container .fixture__items .fixture__item .gameDetails {
   display: flex;
@@ -95,6 +125,11 @@
   border-top: 1px solid rgba(0, 0, 0, 0.0666666667);
   padding-top: 5px;
   margin-top: 5px;
+}
+@media screen and (max-width: 425px) {
+  .fixture__container .fixture__items .fixture__item .actions {
+    flex-direction: column;
+  }
 }
 .fixture__container .fixture__items .fixture__item .actions .MuiButton-root {
   padding: 0;
