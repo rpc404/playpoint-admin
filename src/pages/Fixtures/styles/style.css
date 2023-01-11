@@ -93,6 +93,7 @@
   align-items: center;
   gap: 10px;
   margin-top: 5px;
+  justify-content: center;
 }
 .fixture__container .fixture__items .fixture__item .gameDetails span {
   display: flex;
