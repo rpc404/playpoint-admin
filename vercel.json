@@ -19,6 +19,15 @@
         {
             "source": "/fixture",
             "destination": "/fixture"
+        },
+        {
+            "source": "/questionaires",
+            "destination": "/questionaires"
+        },
+        {
+            "source": "/results",
+            "destination": "/results"
         }
+        
     ]
 }

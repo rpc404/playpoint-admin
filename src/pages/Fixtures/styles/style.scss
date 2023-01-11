@@ -1,162 +1,162 @@
-.fixture__container{
-    padding-bottom: 130px;
-    .title{
-        text-align: center;
+.fixture__container {
+  padding-bottom: 130px;
+  .title {
+    text-align: center;
+  }
+
+  .search__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1.5px solid #000a;
+    width: 90vw;
+    padding: 5px 15px;
+
+    @media screen and (min-width: 426px) {
+      width: 50vw;
     }
 
-    .search__container{
+    @media screen and (min-width: 769px) {
+      width: 30vw;
+    }
+
+    &:focus-within {
+      border-color: #3498db;
+    }
+
+    input {
+      border: none;
+      flex: 1;
+      font-size: 17px;
+      padding: 8px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .fixture__items {
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+    }
+    margin-top: 50px;
+    padding: 0 5vw;
+    gap: 3vw;
+
+    .fixture__item {
+      @media screen and (min-width: 769px) {
+        max-width: 28vw;
+      }
+      min-width: 28vw;
+      cursor: pointer;
+      flex-direction: column;
+      box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+      overflow: hidden;
+      align-items: flex-start;
+      transition: 0.3s all ease-in-out;
+      color: #5a5a5a;
+
+      &:hover {
+        box-shadow: 4px 6px 10px 8px #7c1eff17;
+        -webkit-box-shadow: 4px 6px 10px 8px rgb(124 30 255 / 9%);
+        -moz-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
+        transform: scale(1.05);
+      }
+
+      &.newFixture {
+        align-items: center;
+
+        i {
+          font-size: 22px;
+        }
+      }
+
+      // div {
+      //   @media screen and (max-width:425px) {
+      //     flex-direction: column;
+      //   }
+      // }
+      .fixture {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media screen and (max-width: 426px) {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+
+      .gameDetails {
         display: flex;
         align-items: center;
+        gap: 10px;
+        margin-top: 5px;
         justify-content: center;
-        margin: 0 auto;
-        margin-top: 20px;
-        border: 1.5px solid #000a;
-        width: 90vw;
-        padding: 5px 15px;
 
-        @media screen and (min-width:426px) {
-          width: 50vw;
-        }
+        span {
+          display: flex;
+          align-items: center;
+          gap: 5px;
 
-        @media screen and (min-width:769px) {
-          width: 30vw;
-        }
-
-        &:focus-within{
-          border-color: #3498db;
-        }
-    
-        input{
-          border: none;
-          flex: 1;
-          font-size: 17px;
-          padding: 8px;
-    
-          &:focus{
-            outline: none;
+          img {
+            width: 50px;
           }
         }
       }
 
-      .fixture__items {
+      .summary {
+        margin: 5px 0;
         display: flex;
-        flex-wrap: wrap;
-        @media screen and (max-width:425px) {
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .title {
+        display: flex;
+        align-items: center;
+        b {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+
+      .actions {
+        padding: 0 10px;
+        gap: 10px;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #0001;
+        padding-top: 5px;
+        margin-top: 5px;
+
+        @media screen and (max-width: 425px) {
           flex-direction: column;
         }
-        margin-top: 50px;
-        padding: 0 5vw;
-        gap: 3vw;
-    
-        .fixture__item {
-          @media screen and (min-width:769px) {
-            max-width: 28vw;
-            
-          }
-          min-width: 28vw;
-          cursor: pointer;
-          flex-direction: column;
-          box-shadow: 0px 10px 21px 5px rgba(0, 0, 0, 0.1);
-          padding: 15px;
-          border-radius: 12px;
-          overflow: hidden;
-          align-items: flex-start;
-          transition: 0.3s all ease-in-out;
-          color: #5a5a5a;
-    
-          &:hover {
-            box-shadow: 4px 6px 10px 8px #7c1eff17;
-            -webkit-box-shadow: 4px 6px 10px 8px rgb(124 30 255 / 9%);
-            -moz-box-shadow: 4px 6px 10px 8px rgba(124, 30, 255, 0.09);
-            transform: scale(1.05);
-          }
-    
-          &.newFixture {
-            align-items: center;
-    
-            i {
-              font-size: 22px;
-            }
+
+        .MuiButton-root {
+          padding: 0;
+          min-width: 0;
+          gap: 5px;
+          font-size: 14px;
+          text-transform: capitalize;
+
+          &.editBtn {
+            color: #0984e3;
           }
 
-          // div {
-          //   @media screen and (max-width:425px) {
-          //     flex-direction: column;
-          //   }
-          // }
-          .fixture {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            @media screen and (max-width:426px) {
-              flex-direction: column;
-              gap: 5px;
-            }
-          }
-
-          .gameDetails{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-
-            span{
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                
-                img{
-                    width: 50px;
-                }
-            }
-          }
-
-          .summary{
-            margin: 5px 0;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-          }
-
-          .title{
-            display: flex;
-            align-items: center;
-            b{
-              display: flex;
-              align-items: center;
-              gap: 5px;
-            }
-          }
-    
-          .actions {
-            padding: 0 10px;
-            gap: 10px;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid #0001;
-            padding-top: 5px;
-            margin-top: 5px;
-
-            @media screen and (max-width:425px) {
-              flex-direction: column;
-            }
-    
-            .MuiButton-root {
-              padding: 0;
-              min-width: 0;
-              gap: 5px;
-              font-size: 14px;
-              text-transform: capitalize;
-    
-              &.editBtn {
-                color: #0984e3;
-              }
-    
-              &.deleteBtn {
-                color: #ff7675;
-              }
-            }
+          &.deleteBtn {
+            color: #ff7675;
           }
         }
       }
+    }
+  }
 }
